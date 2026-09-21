@@ -13,3 +13,7 @@ Serve this folder with a static HTTP server (ES modules do not reliably load fro
 Initialization → Welcome choice → Level 1 quiz → Chapter 1 clue → Memory 1. Wrong answers never block progress. Quiz answers and the unlocked memory survive refresh. The reset control in the footer clears local progress after confirmation.
 
 Personal content lives in `PROJECT_CONTENT.md`; the planned journey is in `PROJECT_FLOW.md`. Both are drafts and should be reviewed before publishing the finished site.
+
+## Deployment
+
+The GitHub Pages workflow publishes only `index.html`, `css/`, `js/`, and `data/`. Planning documents are excluded from the Pages artifact. A push to `main` triggers a deployment after Pages is enabled with GitHub Actions as its source.
