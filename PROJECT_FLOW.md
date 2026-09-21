@@ -1,6 +1,6 @@
 # Sweetu's Birthday Quest — proposed screen flow
 
-**Status:** Draft for Dhyan's approval. Personal content and final wording depend on `PROJECT_CONTENT.md`.
+**Status:** Working draft. Dhyan asked to implement one flow at a time while supplying content. The introduction, interactive welcome, three-question Level 1 quiz, and first memory clue are implemented; later screens remain proposed.
 
 ## Journey map
 
@@ -14,7 +14,7 @@ Progress is gated by completion, but wrong answers never stop the journey. The v
 | --- | --- | --- | --- |
 | 0 | Initialization | Animated system check: memories, inside jokes, embarrassing moments, Sweetu. Ends with identification of Gunjan / Sweetu and “Access granted.” Reduced-motion users see the same information without timed effects. | Start is available after the introduction. |
 | 1 | Welcome | “Welcome, Sweetu.” Brief playful copy, then **Enter the Quest**. Returning visitors see “Welcome back, Sweetu” and a resume control. | Quest starts or resumes at saved stage. |
-| 2 | Level 1: Know Dhyan | About five multiple-choice questions, one at a time. Each answer shows a custom reaction and the next button. Score is shown lightly; mistakes are allowed. | Completion saves score and unlocks memory 1. |
+| 2 | Level 1: Know Dhyan | Three multiple-choice questions from facts Dhyan has supplied, one at a time. Each answer shows a custom reaction and the next button. Score is shown lightly; mistakes are allowed. More questions can be added when Dhyan supplies them. | Completion saves score and opens the clue for memory 1. |
 | 3 | Memory reveal 1 | A sealed envelope or card opens after a tap. The real memory appears with its available date, photo, story, quote, or song. | Memory 1 saved as unlocked; continue to Level 2. |
 | 4 | Level 2: Remember Us | A short set of real friendship prompts, potentially multiple choice, timeline, photo clue, or fill-in. Prompts are built only from supplied memories. | Each completed challenge can unlock a related memory. Mistakes show a playful hint and allow continuation. |
 | 5 | Memory reveals | Each new memory receives a short “Memory verified / unlocked” transition and a deliberate open action. | Newly unlocked IDs saved immediately. |

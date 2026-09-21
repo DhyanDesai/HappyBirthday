@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111324" />
+    <meta name="description" content="A little birthday quest for Sweetu." />
+    <title>Sweetu's Birthday Quest</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/casual.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="brand"><span class="brand-flower" aria-hidden="true">✿</span> sweetu's little corner</div>
+      <span class="header-note">made with too much excitement ♡</span>
+    </header>
+
+    <main id="app" class="app-shell" tabindex="-1">
+      <section id="intro-screen" class="screen intro-screen" aria-labelledby="intro-title">
+        <div class="eyebrow"><span class="live-dot" aria-hidden="true"></span> a tiny birthday surprise is loading...</div>
+        <div class="intro-grid">
+          <div class="intro-copy">
+            <p class="tiny-label">psst, one quick thing first</p>
+            <h1 id="intro-title">Hold on,<br /><em>Sweetu.</em></h1>
+            <p class="intro-lede">Something has been made for you. But first, we need to verify a few things.</p>
+            <div class="scribble" aria-hidden="true">yes, this is about you ↗</div>
+          </div>
+
+          <div class="terminal" aria-label="Birthday system initialization">
+            <div class="terminal-top"><span class="terminal-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>the very official birthday machine</span><span>✿</span></div>
+            <div class="terminal-body">
+              <div id="boot-lines" class="boot-lines" aria-live="polite"></div>
+              <div class="terminal-result" id="terminal-result" hidden>
+                <p class="result-title">yep, it's really you! <span aria-hidden="true">✳</span></p>
+                <dl><div><dt>USER</dt><dd>GUNJAN</dd></div><div><dt>NICKNAME</dt><dd>SWEETU</dd></div><div><dt>ACCESS</dt><dd>GRANTED <span aria-hidden="true">✿</span></dd></div></dl>
+              </div>
+            </div>
+            <div class="terminal-bottom"><span>all because of one birthday wish...</span><span aria-hidden="true">✳ ✳ ✳</span></div>
+          </div>
+        </div>
+        <button type="button" class="text-button skip-button" id="skip-intro">Skip initialization <span aria-hidden="true">↗</span></button>
+      </section>
+
+      <section id="welcome-screen" class="screen welcome-screen" aria-labelledby="welcome-title" hidden>
+        <div class="welcome-art" aria-hidden="true"><span>✿</span><span>✳</span><span>✦</span><span>✿</span></div>
+        <p class="tiny-label">okay, the birthday machine says you're in</p>
+        <h1 id="welcome-title">Welcome,<br /><em>Sweetu.</em></h1>
+        <p class="welcome-lede">Apparently, a normal birthday wish wasn't enough.</p>
+        <p class="welcome-note">So I made you something.</p>
+        <div class="welcome-prompt" aria-labelledby="welcome-prompt-title">
+          <p id="welcome-prompt-title">Before we begin: what were you expecting?</p>
+          <div class="choice-row">
+            <button type="button" class="choice-button" data-welcome-choice="normal">A normal birthday wish</button>
+            <button type="button" class="choice-button" data-welcome-choice="quest">A whole quest, obviously</button>
+          </div>
+          <p class="choice-feedback" id="welcome-feedback" aria-live="polite">Pick one. There are no wrong answers here.</p>
+        </div>
+        <button type="button" class="primary-button" id="enter-quest">Enter the quest <span aria-hidden="true">↗</span></button>
+        <p class="welcome-footnote" id="welcome-footnote">A tiny journey through us, made just for you.</p>
+      </section>
+
+      <section id="quiz-screen" class="screen quiz-screen" aria-labelledby="quiz-title" hidden>
+        <div class="quiz-heading"><p class="tiny-label">round one · know me</p><p id="quiz-progress" class="quiz-progress">QUESTION 01 / 03</p></div>
+        <div class="quiz-layout">
+          <div class="quiz-intro"><span class="quiz-symbol" aria-hidden="true">?</span><h1 id="quiz-title">How well do you<br /><em>know me?</em></h1><p>Three questions. Zero pressure. I am keeping score, but only because it looks official.</p></div>
+          <div class="quiz-panel">
+            <div id="quiz-question-view">
+              <p class="clue-label" id="quiz-number">QUESTION 01</p>
+              <h2 id="quiz-question"></h2>
+              <div id="quiz-options" class="quiz-options"></div>
+              <p id="quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+              <button type="button" id="next-question" class="primary-button" hidden>Next question <span aria-hidden="true">↗</span></button>
+            </div>
+            <div id="quiz-complete" hidden>
+              <p class="clue-label">LEVEL COMPLETE ✳</p>
+              <h2>You made it through.</h2>
+              <p id="quiz-score-line" class="quiz-score-line"></p>
+              <p>And finishing this level unlocked a piece of our beginning.</p>
+              <button type="button" id="open-first-memory" class="primary-button">Open the memory <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="chapter-screen" class="screen chapter-screen" aria-labelledby="chapter-title" hidden>
+        <p class="tiny-label">our little timeline <span class="progress-dots" aria-label="Introduction complete; chapter one next">● ━ ○ ━ ○ ━ ○</span></p>
+        <div class="chapter-layout">
+          <div>
+            <p class="chapter-number">CHAPTER 01 / THE BEGINNING</p>
+            <h1 id="chapter-title">It started with<br /><em>a birthday wish.</em></h1>
+            <p class="chapter-copy">One birthday wish. Our first real conversation. Do you remember where it began?</p>
+            <div class="clue" id="first-clue">
+              <p class="clue-label">FIRST CLUE · CHOOSE ONE</p>
+              <div class="choice-row clue-choices">
+                <button type="button" class="choice-button" data-clue-answer="whatsapp">WhatsApp</button>
+                <button type="button" class="choice-button" data-clue-answer="telegram">Telegram</button>
+              </div>
+              <p class="choice-feedback" id="clue-feedback" aria-live="polite">The first real hello is waiting inside this file.</p>
+            </div>
+            <p class="chapter-aside" id="chapter-aside" hidden>And that was only the beginning.</p>
+          </div>
+          <div class="chapter-card" id="chapter-card" aria-label="Locked memory file">
+            <div class="card-stamp" aria-hidden="true">✿</div>
+            <span>FILE NO. 01</span>
+            <strong id="card-title">A SEALED MEMORY</strong>
+            <small id="card-subtitle">ANSWER THE CLUE TO OPEN</small>
+            <div class="card-bottom"><span id="card-status">LOCKED</span><span aria-hidden="true">✳</span></div>
+          </div>
+        </div>
+        <article class="memory-reveal" id="memory-reveal" aria-labelledby="memory-title" hidden>
+          <p class="tiny-label">MEMORY 01 · UNLOCKED</p>
+          <h2 id="memory-title">The first real hello</h2>
+          <p>It was my birthday, and you wished me on Telegram. That was our first real interaction. Slowly, our conversations moved to WhatsApp.</p>
+          <p>Back then, I thought you were strict and took your studies <em>very, very</em> seriously. I had this thought: “Me aa chhokri ne study ma disturb kari to aa mari sathe vaaat nai kare...”</p>
+          <p>But you changed something bigger than that first impression. You taught me that friendship can be so beautiful without all the rules I thought it needed.</p>
+          <p class="memory-signoff">— Dhyan</p>
+          <p class="chapter-next">Chapter 1 continues when we add your next memories together.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>MADE FOR GUNJAN, WITH LOVE</span><button type="button" class="text-button" id="reset-progress">Reset progress</button></footer>
+  </body>
+</html>
