@@ -1,8 +1,10 @@
 # Sweetu's Birthday Quest
 
-An in-progress, static birthday experience for Gunjan. Content is added with Dhyan one chapter at a time. The current build includes the introduction, an interactive welcome, a three-question quiz, the first memory clue and reveal, and local progress storage.
+An in-progress, static birthday experience for Gunjan. Content is added with Dhyan one chapter at a time. The current build includes the introduction, an interactive welcome, a three-question quiz, the first memory clue and reveal, a playful Memory 2 collection task, and local progress storage.
 
 The current visual direction is a warm, playful scrapbook with handwritten notes and gentle motion. Reduced-motion settings disable decorative animation.
+
+Each step uses a clear primary button and short instruction. Memory reveals include an explicit continue action, and interactive notes are labeled “tap me” for users who are less familiar with web interactions.
 
 ## Run locally
 

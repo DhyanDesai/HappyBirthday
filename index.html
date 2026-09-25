@@ -45,6 +45,7 @@
           </div>
         </div>
         <button type="button" class="text-button skip-button" id="skip-intro">Skip initialization <span aria-hidden="true">↗</span></button>
+        <p class="helper-tip"><span aria-hidden="true">☝</span> When loading finishes, tap the button above.</p>
       </section>
 
       <section id="welcome-screen" class="screen welcome-screen" aria-labelledby="welcome-title" hidden>
@@ -53,6 +54,7 @@
         <h1 id="welcome-title">Welcome,<br /><em>Sweetu.</em></h1>
         <p class="welcome-lede">Apparently, a normal birthday wish wasn't enough.</p>
         <p class="welcome-note">So I made you something.</p>
+        <p class="helper-tip centered-tip"><span aria-hidden="true">↓</span> Choose either answer, then press the pink button.</p>
         <div class="welcome-prompt" aria-labelledby="welcome-prompt-title">
           <p id="welcome-prompt-title">Before we begin: what were you expecting?</p>
           <div class="choice-row">
@@ -68,7 +70,7 @@
       <section id="quiz-screen" class="screen quiz-screen" aria-labelledby="quiz-title" hidden>
         <div class="quiz-heading"><p class="tiny-label">round one · know me</p><p id="quiz-progress" class="quiz-progress">QUESTION 01 / 03</p></div>
         <div class="quiz-layout">
-          <div class="quiz-intro"><span class="quiz-symbol" aria-hidden="true">?</span><h1 id="quiz-title">How well do you<br /><em>know me?</em></h1><p>Three questions. Zero pressure. I am keeping score, but only because it looks official.</p></div>
+            <div class="quiz-intro"><span class="quiz-symbol" aria-hidden="true">?</span><h1 id="quiz-title">How well do you<br /><em>know me?</em></h1><p>Three questions. Zero pressure. Tap one answer each time—the next button will appear for you.</p></div>
           <div class="quiz-panel">
             <div id="quiz-question-view">
               <p class="clue-label" id="quiz-number">QUESTION 01</p>
@@ -120,7 +122,34 @@
           <p>Back then, I thought you were strict and took your studies <em>very, very</em> seriously. I had this thought: “Me aa chhokri ne study ma disturb kari to aa mari sathe vaaat nai kare...”</p>
           <p>But you changed something bigger than that first impression. You taught me that friendship can be so beautiful without all the rules I thought it needed.</p>
           <p class="memory-signoff">— Dhyan</p>
-          <p class="chapter-next">Chapter 1 continues when we add your next memories together.</p>
+          <p class="chapter-next">That first hello opened the door. There is another surprise waiting next.</p>
+          <button type="button" class="primary-button continue-button" id="continue-to-memory-two">Continue to the next surprise <span aria-hidden="true">↓</span></button>
+        </article>
+
+        <section class="conversation-task" id="conversation-task" aria-labelledby="conversation-task-title" hidden>
+          <div class="task-heading">
+            <p class="tiny-label">SURPRISE TASK · MEMORY 02</p>
+            <h2 id="conversation-task-title">Catch the things<br />we shared.</h2>
+            <p>Our bond did not arrive all at once. It grew through conversations. Tap each of the three colorful notes to put this memory together.</p>
+            <p class="task-counter" id="task-counter" aria-live="polite">0 / 3 pieces collected</p>
+          </div>
+          <div class="floating-notes" aria-label="Conversation pieces">
+            <button type="button" class="floating-note note-dreams" data-memory-piece="dreams"><span aria-hidden="true">✦</span> dreams<small>tap me</small></button>
+            <button type="button" class="floating-note note-family" data-memory-piece="family"><span aria-hidden="true">♡</span> family<small>tap me</small></button>
+            <button type="button" class="floating-note note-future" data-memory-piece="future"><span aria-hidden="true">↗</span> our futures<small>tap me</small></button>
+          </div>
+          <p class="task-feedback" id="task-feedback" aria-live="polite">tap the notes before they float away!</p>
+        </section>
+
+        <article class="memory-reveal memory-two" id="memory-two" aria-labelledby="memory-two-title" hidden>
+          <p class="tiny-label">MEMORY 02 · UNLOCKED</p>
+          <h2 id="memory-two-title">When “talking” became trust</h2>
+          <p>Then we really started getting to know each other. You told me about yourself—your dreams, your family, and the career you wanted. I told you those parts of my life too.</p>
+          <p>Somewhere inside those conversations, the bond started feeling genuine. We could both feel it.</p>
+          <blockquote>And when I was wrong, you did not just agree with me. You would tell me, “No, we should do this in a better way.”</blockquote>
+          <p>That honesty, the way you guided me, and the freedom we had with each other became one of the most beautiful things about our friendship.</p>
+          <p class="memory-signoff">you unlocked this one by remembering what we shared ♡</p>
+          <p class="chapter-next">Memory 02 is safe in the vault. More of our story will appear here as we build it.</p>
         </article>
       </section>
     </main>

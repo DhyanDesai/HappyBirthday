@@ -40,7 +40,15 @@ Provide **8–15** real memories. Nine can fill the proposed vault. For each, co
 - **Dhyan's reflection, in his words:** “I used to believe that friendship means this... aavu to hovu j joiye and aavu nai thay to nai chale... but you were the one who taught me that without any restrictions also friendships can be so so so beautiful.”
 - **Still needed:** Exact date if desired, any screenshot/photo, and confirmation of the wording before publication.
 
-Memory 2:
+### Memory 2 — Getting to know each other
+
+- **When:** After the conversations moved from Telegram to WhatsApp; exact dates not yet provided.
+- **What happened:** Gunjan told Dhyan about herself, her dreams, her family, and the career she wanted. Dhyan shared those parts of his life with her too.
+- **Why it matters:** As they opened up to each other, both of them could feel that their bond was genuine.
+- **What made the friendship special:** When Dhyan was wrong, Gunjan did not simply agree with him. She would guide him and suggest a better way to handle things.
+- **Dhyan's reflection:** That honesty and guidance became one of the most beautiful parts of their friendship.
+- **Interactive task:** Sweetu catches three floating conversation notes—dreams, family, and the future. Collecting all three reveals the memory as a surprise.
+- **Still needed:** A specific example of advice she gave, if Dhyan wants to include one; an approximate period; and any related screenshot or photo.
 
 Memory 3:
 
@@ -113,7 +121,7 @@ Rough notes in Dhyan's own words are enough. These will be edited into a letter 
 - Why Gunjan matters to you:
 - Which real moments to mention:
 - What you are grateful for:
-- How this friendship changed you: Gunjan helped you let go of rigid rules about what friendship must be. You learned that a friendship without those restrictions can still be “so so so beautiful.”
+- How this friendship changed you: Gunjan helped you let go of rigid rules about what friendship must be. You learned that a friendship without those restrictions can still be “so so so beautiful.” Her honesty also mattered: when you were wrong, she guided you toward a better way instead of simply agreeing with you.
 - What you will never forget about her:
 - What you hope for her this year:
 - A sentence that sounds unmistakably like you:

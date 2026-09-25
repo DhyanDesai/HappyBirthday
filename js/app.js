@@ -16,6 +16,7 @@ const quiz = createQuiz({ getState: () => state, saveState });
 
 function renderFirstMemory() {
   const unlocked = state.unlockedMemories.includes(1);
+  const secondUnlocked = state.unlockedMemories.includes(2);
   document.getElementById('memory-reveal').hidden = !unlocked;
   document.getElementById('chapter-aside').hidden = !unlocked;
   document.getElementById('first-clue').hidden = unlocked;
@@ -23,6 +24,14 @@ function renderFirstMemory() {
   document.getElementById('card-subtitle').textContent = unlocked ? 'TELEGRAM → WHATSAPP' : 'ANSWER THE CLUE TO OPEN';
   document.getElementById('card-status').textContent = unlocked ? 'UNLOCKED' : 'LOCKED';
   document.getElementById('chapter-card').setAttribute('aria-label', unlocked ? 'Memory file one unlocked' : 'Locked memory file');
+  document.getElementById('conversation-task').hidden = !unlocked || secondUnlocked;
+  document.getElementById('memory-two').hidden = !secondUnlocked;
+  document.querySelectorAll('[data-memory-piece]').forEach(button => {
+    const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
+    button.classList.toggle('collected', collected);
+    button.disabled = collected;
+  });
+  document.getElementById('task-counter').textContent = `${state.memoryPieces.length} / 3 pieces collected`;
 }
 
 function showStage(stage, persist = true) {
@@ -73,6 +82,10 @@ document.getElementById('skip-intro').addEventListener('click', event => {
 });
 document.getElementById('enter-quest').addEventListener('click', () => showStage('quiz'));
 document.getElementById('open-first-memory').addEventListener('click', () => showStage('chapter'));
+document.getElementById('continue-to-memory-two').addEventListener('click', () => {
+  document.getElementById(state.unlockedMemories.includes(2) ? 'memory-two' : 'conversation-task')
+    .scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+});
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-welcome-choice]').forEach(option => option.classList.toggle('selected', option === button));
@@ -94,6 +107,28 @@ document.querySelectorAll('[data-clue-answer]').forEach(button => {
     saveState(state);
     renderFirstMemory();
     document.getElementById('memory-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+  });
+});
+document.querySelectorAll('[data-memory-piece]').forEach(button => {
+  button.addEventListener('click', () => {
+    const piece = button.dataset.memoryPiece;
+    if (state.memoryPieces.includes(piece)) return;
+    state.memoryPieces.push(piece);
+    button.classList.add('collected');
+    button.disabled = true;
+    const remaining = 3 - state.memoryPieces.length;
+    const feedback = document.getElementById('task-feedback');
+    const pieceLabels = { dreams: 'Dreams', family: 'Family', future: 'Our futures' };
+    feedback.textContent = remaining ? `${pieceLabels[piece]} collected! ${remaining} more to catch.` : 'That is all of them. Putting the memory together...';
+    if (!remaining) state.unlockedMemories = [...new Set([...state.unlockedMemories, 2])];
+    saveState(state);
+    document.getElementById('task-counter').textContent = `${state.memoryPieces.length} / 3 pieces collected`;
+    if (!remaining) {
+      window.setTimeout(() => {
+        renderFirstMemory();
+        document.getElementById('memory-two').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+      }, prefersReducedMotion.matches ? 0 : 650);
+    }
   });
 });
 document.getElementById('reset-progress').addEventListener('click', () => {

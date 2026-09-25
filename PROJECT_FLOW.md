@@ -1,6 +1,6 @@
 # Sweetu's Birthday Quest — proposed screen flow
 
-**Status:** Working draft. Dhyan asked to implement one flow at a time while supplying content. The introduction, interactive welcome, three-question Level 1 quiz, and first memory clue are implemented; later screens remain proposed.
+**Status:** Working draft. Dhyan asked to implement one flow at a time while supplying content. The introduction, interactive welcome, three-question Level 1 quiz, first memory clue, and Memory 2 collection task are implemented; later screens remain proposed.
 
 ## Journey map
 
