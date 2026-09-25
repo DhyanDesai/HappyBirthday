@@ -19,3 +19,11 @@ Personal content lives in `PROJECT_CONTENT.md`; the planned journey is in `PROJE
 ## Deployment
 
 The GitHub Pages workflow publishes only `index.html`, `css/`, `js/`, and `data/`. Planning documents are excluded from the Pages artifact. A push to `main` triggers a deployment after Pages is enabled with GitHub Actions as its source.
+
+## Branch workflow
+
+- `main` contains the tested version and is the only branch that deploys.
+- `develop` collects completed work before release.
+- New work uses a short-lived branch created from `develop`, such as `feature/memory-03`.
+- Test the feature branch locally, merge it into `develop`, and test the combined journey.
+- Merge `develop` into `main` only when that version is ready to publish.
