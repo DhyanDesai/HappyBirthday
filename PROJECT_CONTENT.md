@@ -85,6 +85,8 @@ This will be a three-round game celebrating the understanding Dhyan and Gunjan c
 
 #### Promise reveal after Situation 3
 
+Before the promise, completing Situation 3 unlocks a large chapter reveal connecting the three lessons: space, personal choice, and never comparing their bond. Its central message is that the bond became stronger because both people stayed, communicated, listened, and corrected themselves. The promise remains a separate final reveal.
+
 - The exact promise:
 - When or why you made it:
 - What the promise means to Dhyan today:

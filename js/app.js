@@ -32,6 +32,7 @@ function renderFirstMemory() {
   document.getElementById('memory-two').hidden = !secondUnlocked;
   document.getElementById('understanding-intro').hidden = !secondUnlocked;
   document.getElementById('understanding-game').hidden = !secondUnlocked;
+  document.getElementById('big-understanding-reveal').hidden = !secondUnlocked || !state.understandingRevealUnlocked;
   if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
@@ -144,6 +145,7 @@ function renderUnderstandingMoment() {
   document.getElementById('understanding-feedback').textContent = savedAnswer === undefined ? 'Choose the understanding that became ours.' : savedAnswer === moment.correctAnswer ? moment.correctMessage : moment.incorrectMessage;
   document.getElementById('understanding-reveal').hidden = savedAnswer === undefined;
   document.getElementById('next-understanding-moment').hidden = savedAnswer === undefined || understandingIndex >= understandingMoments.length - 1;
+  document.getElementById('unlock-big-reveal').hidden = savedAnswer === undefined || moment.number !== understandingTotal || state.understandingRevealUnlocked;
 }
 
 function renderBuildUpBeat() {
@@ -190,6 +192,13 @@ document.getElementById('continue-build-up').addEventListener('click', () => {
   saveState(state);
   renderUnderstandingMoment();
   document.getElementById('situation-card').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+document.getElementById('unlock-big-reveal').addEventListener('click', () => {
+  state.understandingRevealUnlocked = true;
+  saveState(state);
+  document.getElementById('unlock-big-reveal').hidden = true;
+  document.getElementById('big-understanding-reveal').hidden = false;
+  document.getElementById('big-understanding-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
