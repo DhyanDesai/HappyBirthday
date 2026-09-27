@@ -26,6 +26,7 @@ function renderFirstMemory() {
   document.getElementById('chapter-card').setAttribute('aria-label', unlocked ? 'Memory file one unlocked' : 'Locked memory file');
   document.getElementById('conversation-task').hidden = !unlocked || secondUnlocked;
   document.getElementById('memory-two').hidden = !secondUnlocked;
+  document.getElementById('understanding-intro').hidden = !secondUnlocked;
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
     button.classList.toggle('collected', collected);
@@ -85,6 +86,10 @@ document.getElementById('open-first-memory').addEventListener('click', () => sho
 document.getElementById('continue-to-memory-two').addEventListener('click', () => {
   document.getElementById(state.unlockedMemories.includes(2) ? 'memory-two' : 'conversation-task')
     .scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+});
+document.getElementById('continue-to-understanding').addEventListener('click', () => {
+  document.getElementById('understanding-intro')
+    .scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
