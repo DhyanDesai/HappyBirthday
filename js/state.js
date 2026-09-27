@@ -14,7 +14,7 @@ export function loadState() {
       quizScore: Number.isFinite(saved.quizScore) ? saved.quizScore : 0,
       quizAnswers: Array.isArray(saved.quizAnswers) ? saved.quizAnswers.slice(0, 3) : [],
       memoryPieces: Array.isArray(saved.memoryPieces) ? saved.memoryPieces.filter(piece => ['dreams', 'family', 'future'].includes(piece)) : [],
-      understandingAnswers: Array.isArray(saved.understandingAnswers) ? saved.understandingAnswers.slice(0, 5) : [],
+      understandingAnswers: Array.isArray(saved.understandingAnswers) ? saved.understandingAnswers.slice(0, 3) : [],
       unlockedMemories: Array.isArray(saved.unlockedMemories) ? saved.unlockedMemories.filter(id => id === 1 || id === 2) : [],
       discoveredSecrets: Array.isArray(saved.discoveredSecrets) ? saved.discoveredSecrets : [],
       completedLevels

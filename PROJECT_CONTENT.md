@@ -52,7 +52,7 @@ Provide **8–15** real memories. Nine can fill the proposed vault. For each, co
 
 ### Memory 3 — The understanding we built
 
-This will be a five-round game celebrating the understanding Dhyan and Gunjan created through difficult situations and deep conversations. Each round needs the real situation and the conclusion they reached; no situation or agreement should be invented.
+This will be a three-round game celebrating the understanding Dhyan and Gunjan created through difficult situations and deep conversations. The third situation is the most important and receives a distinct emotional presentation. Completing it reveals their promise in a separate, beautiful ending. No situation, agreement, or promise should be invented.
 
 #### Situation 1
 
@@ -74,6 +74,7 @@ This will be a five-round game celebrating the understanding Dhyan and Gunjan cr
 
 #### Situation 3
 
+- **Role in the journey:** The most important understanding and emotional centerpiece of this level.
 - What happened:
 - What each of you initially felt or thought:
 - What you discussed:
@@ -82,25 +83,13 @@ This will be a five-round game celebrating the understanding Dhyan and Gunjan cr
 - What Dhyan wants to say after she answers:
 - Keep any part private or vague?
 
-#### Situation 4
+#### Promise reveal after Situation 3
 
-- What happened:
-- What each of you initially felt or thought:
-- What you discussed:
-- The understanding or rule you created together:
-- Three believable wrong options, if you have ideas:
-- What Dhyan wants to say after she answers:
-- Keep any part private or vague?
-
-#### Situation 5
-
-- What happened:
-- What each of you initially felt or thought:
-- What you discussed:
-- The understanding or rule you created together:
-- Three believable wrong options, if you have ideas:
-- What Dhyan wants to say after she answers:
-- Keep any part private or vague?
+- The exact promise:
+- When or why you made it:
+- What the promise means to Dhyan today:
+- Exact words or Gujarati phrasing to preserve:
+- Any symbol, color, photo, or song associated with it:
 
 Memory 4:
 

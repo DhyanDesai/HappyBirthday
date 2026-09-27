@@ -14,6 +14,7 @@ const bootLines = document.getElementById('boot-lines');
 const result = document.getElementById('terminal-result');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const quiz = createQuiz({ getState: () => state, saveState });
+const understandingTotal = 3;
 let understandingIndex = Math.max(0, Math.min(state.understandingAnswers.length - 1, understandingMoments.length - 1));
 
 function renderFirstMemory() {
@@ -98,11 +99,11 @@ document.getElementById('continue-to-understanding').addEventListener('click', (
 function renderUnderstandingMoment() {
   const moment = understandingMoments[understandingIndex];
   const savedAnswer = state.understandingAnswers[understandingIndex];
-  const remainingTotal = 5 - moment.number;
-  document.getElementById('moment-progress-label').textContent = `MOMENT ${String(moment.number).padStart(2, '0')} / 05`;
+  const remainingTotal = understandingTotal - moment.number;
+  document.getElementById('moment-progress-label').textContent = `MOMENT ${String(moment.number).padStart(2, '0')} / ${String(understandingTotal).padStart(2, '0')}`;
   const progressDots = document.getElementById('moment-progress-dots');
-  progressDots.textContent = Array.from({ length: 5 }, (_, index) => index <= understandingIndex ? '●' : '○').join(' ');
-  progressDots.setAttribute('aria-label', `Moment ${moment.number} of five`);
+  progressDots.textContent = Array.from({ length: understandingTotal }, (_, index) => index <= understandingIndex ? '●' : '○').join(' ');
+  progressDots.setAttribute('aria-label', `Moment ${moment.number} of ${understandingTotal}`);
   document.getElementById('understanding-game-title').textContent = moment.title;
   document.getElementById('understanding-situation').textContent = moment.situation;
   document.getElementById('understanding-question').textContent = moment.question;
