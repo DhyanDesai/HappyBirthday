@@ -75,13 +75,13 @@ This will be a three-round game celebrating the understanding Dhyan and Gunjan c
 #### Situation 3
 
 - **Role in the journey:** The most important understanding and emotional centerpiece of this level.
-- What happened:
-- What each of you initially felt or thought:
-- What you discussed:
-- The understanding or rule you created together:
-- Three believable wrong options, if you have ideas:
-- What Dhyan wants to say after she answers:
-- Keep any part private or vague?
+- What happened: Dhyan felt their daily conversations had become repetitive. He compared their bond with other best friends who talked about many topics, met in person, and shared more visible life experiences.
+- Dhyan's mistake: He explained this comparison to Gunjan without knowing how deeply she disliked comparisons. Although he tried not to sound rude, his words hurt her badly.
+- What Gunjan explained: Their bond should never be measured against somebody else’s. Every person and every friendship is different and special for different reasons.
+- What Dhyan realized: He had overlooked how much Gunjan had already changed his life. She met him when he felt depressed, lost, alone, stuck in his past, and prone to overthinking. She helped him become a better person and taught him to respect individual personalities because nobody is the same.
+- Why it is the most important moment: Even while hurt, Gunjan did not abandon him. She listened, understood where his thinking had gone wrong, and helped him correct it. Dhyan realized their bond was more valuable than anything he had compared it with.
+- Core understanding: “Every bond is different and special because of different reasons. We should absolutely never compare our bond with someone else’s.”
+- Presentation: Four-stage slow build-up before the question, followed by a distinct emotional reveal.
 
 #### Promise reveal after Situation 3
 

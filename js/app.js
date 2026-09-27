@@ -16,6 +16,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const quiz = createQuiz({ getState: () => state, saveState });
 const understandingTotal = 3;
 let understandingIndex = Math.max(0, Math.min(state.understandingAnswers.length - 1, understandingMoments.length - 1));
+let buildUpIndex = 0;
 
 function renderFirstMemory() {
   const unlocked = state.unlockedMemories.includes(1);
@@ -104,6 +105,13 @@ function renderUnderstandingMoment() {
   const progressDots = document.getElementById('moment-progress-dots');
   progressDots.textContent = Array.from({ length: understandingTotal }, (_, index) => index <= understandingIndex ? '●' : '○').join(' ');
   progressDots.setAttribute('aria-label', `Moment ${moment.number} of ${understandingTotal}`);
+  const showBuildUp = moment.special && !state.understandingBuildUpSeen && savedAnswer === undefined;
+  document.getElementById('special-build-up').hidden = !showBuildUp;
+  const situationCard = document.getElementById('situation-card');
+  situationCard.hidden = showBuildUp;
+  situationCard.classList.toggle('final-situation', Boolean(moment.special));
+  document.getElementById('understanding-reveal').classList.toggle('final-understanding', Boolean(moment.special));
+  if (showBuildUp) renderBuildUpBeat();
   document.getElementById('understanding-game-title').textContent = moment.title;
   document.getElementById('understanding-situation').textContent = moment.situation;
   document.getElementById('understanding-question').textContent = moment.question;
@@ -114,7 +122,9 @@ function renderUnderstandingMoment() {
   closing.textContent = moment.closingNote || '';
   closing.hidden = !moment.closingNote;
   document.getElementById('understanding-footnote').textContent = moment.playfulNote || 'You changed the way I understood friendship—and that made our bond more beautiful.';
-  document.getElementById('moment-saved-copy').innerHTML = `<strong>Moment ${moment.number} is safe.</strong><br />${remainingTotal} more ${remainingTotal === 1 ? 'understanding' : 'understandings'} will join it.`;
+  document.getElementById('moment-saved-copy').innerHTML = moment.number === understandingTotal
+    ? '<strong>All three understandings are safe.</strong><br />One promise is waiting beyond this moment.'
+    : `<strong>Moment ${moment.number} is safe.</strong><br />${remainingTotal} more ${remainingTotal === 1 ? 'understanding' : 'understandings'} will join it.`;
   const options = document.getElementById('understanding-options');
   options.replaceChildren();
   moment.options.forEach((label, index) => {
@@ -136,6 +146,18 @@ function renderUnderstandingMoment() {
   document.getElementById('next-understanding-moment').hidden = savedAnswer === undefined || understandingIndex >= understandingMoments.length - 1;
 }
 
+function renderBuildUpBeat() {
+  const moment = understandingMoments[understandingIndex];
+  const beat = moment.buildUp[buildUpIndex];
+  document.getElementById('build-label').textContent = beat.label;
+  document.getElementById('build-title').textContent = beat.title;
+  document.getElementById('build-text').textContent = beat.text;
+  document.getElementById('build-progress').textContent = moment.buildUp.map((_, index) => index <= buildUpIndex ? '●' : '○').join('  ');
+  document.getElementById('continue-build-up').innerHTML = buildUpIndex === moment.buildUp.length - 1
+    ? 'See what we understood <span aria-hidden="true">↓</span>'
+    : 'Continue <span aria-hidden="true">→</span>';
+}
+
 function answerUnderstandingMoment(answerIndex) {
   if (state.understandingAnswers[understandingIndex] !== undefined) return;
   state.understandingAnswers[understandingIndex] = answerIndex;
@@ -155,6 +177,19 @@ document.getElementById('next-understanding-moment').addEventListener('click', (
   understandingIndex += 1;
   renderUnderstandingMoment();
   document.getElementById('understanding-game').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+document.getElementById('continue-build-up').addEventListener('click', () => {
+  const moment = understandingMoments[understandingIndex];
+  if (!moment.buildUp) return;
+  if (buildUpIndex < moment.buildUp.length - 1) {
+    buildUpIndex += 1;
+    renderBuildUpBeat();
+    return;
+  }
+  state.understandingBuildUpSeen = true;
+  saveState(state);
+  renderUnderstandingMoment();
+  document.getElementById('situation-card').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
@@ -205,6 +240,7 @@ document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
   understandingIndex = 0;
+  buildUpIndex = 0;
   bootLines.replaceChildren();
   result.hidden = true;
   const skip = document.getElementById('skip-intro');
