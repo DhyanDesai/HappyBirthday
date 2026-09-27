@@ -180,7 +180,7 @@
         </section>
 
         <section class="understanding-game" id="understanding-game" aria-labelledby="understanding-game-title" hidden>
-          <div class="moment-progress"><span>MOMENT 01 / 05</span><span aria-label="One of five moments available">● ○ ○ ○ ○</span></div>
+          <div class="moment-progress"><span id="moment-progress-label">MOMENT 01 / 05</span><span id="moment-progress-dots" aria-label="One of five moments available">● ○ ○ ○ ○</span></div>
           <div class="situation-card">
             <div class="situation-tape" aria-hidden="true"></div>
             <p class="tiny-label">A SITUATION WE TURNED INTO UNDERSTANDING</p>
@@ -194,11 +194,13 @@
           </div>
           <article class="understanding-reveal" id="understanding-reveal" hidden>
             <p class="tiny-label">THE UNDERSTANDING WE KEPT ✦</p>
-            <h3>Space was never distance.</h3>
+            <h3 id="understanding-reveal-title"></h3>
             <p id="understanding-lesson"></p>
             <blockquote id="understanding-original"></blockquote>
-            <p class="understanding-footnote">You changed the way I understood friendship—and that made our bond more beautiful.</p>
-            <div class="moment-saved"><span aria-hidden="true">✓</span><p><strong>Moment 1 is safe.</strong><br />Four more understandings will join it.</p></div>
+            <p class="understanding-closing" id="understanding-closing"></p>
+            <p class="understanding-footnote" id="understanding-footnote"></p>
+            <div class="moment-saved"><span aria-hidden="true">✓</span><p id="moment-saved-copy"></p></div>
+            <button type="button" class="primary-button continue-button" id="next-understanding-moment" hidden>Continue to the next moment <span aria-hidden="true">↓</span></button>
           </article>
         </section>
       </section>

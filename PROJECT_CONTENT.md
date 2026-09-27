@@ -65,13 +65,12 @@ This will be a five-round game celebrating the understanding Dhyan and Gunjan cr
 
 #### Situation 2
 
-- What happened:
-- What each of you initially felt or thought:
-- What you discussed:
-- The understanding or rule you created together:
-- Three believable wrong options, if you have ideas:
-- What Dhyan wants to say after she answers:
-- Keep any part private or vague?
+- What happened: Gunjan spoke to some older friends on calls but often said no when Dhyan asked to call. Dhyan wondered whether he was less special to her or whether there was another reason.
+- What Gunjan helped him understand: She had her own reasons why calls were not always possible. Even without a reason, whether to call should remain the person’s choice.
+- The understanding created together: “Call kare to j sara friends kehvay evu jaroori nathi. Chat par pan badhi vaato thai shake.”
+- Why it mattered: Gunjan also made an effort so Dhyan would not feel that she would never call him. Whenever it was possible for her, she called.
+- Fun ending in Dhyan's words: “E badha call ma every second while talking to you I was blushing.”
+- Interaction: Four choices ask whether calls measure closeness; the real answer celebrates choice, circumstances, chat, and mutual effort.
 
 #### Situation 3
 
