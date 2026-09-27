@@ -175,8 +175,31 @@
               <span aria-hidden="true">5</span>
               <p><strong>Five moments are waiting.</strong><br />In each one, can you remember the understanding we created?</p>
             </div>
-            <p class="coming-soon-note">Our first moment will appear here next.</p>
+            <button type="button" class="primary-button understanding-start" id="start-understanding-game">Begin with our first moment <span aria-hidden="true">↓</span></button>
           </div>
+        </section>
+
+        <section class="understanding-game" id="understanding-game" aria-labelledby="understanding-game-title" hidden>
+          <div class="moment-progress"><span>MOMENT 01 / 05</span><span aria-label="One of five moments available">● ○ ○ ○ ○</span></div>
+          <div class="situation-card">
+            <div class="situation-tape" aria-hidden="true"></div>
+            <p class="tiny-label">A SITUATION WE TURNED INTO UNDERSTANDING</p>
+            <h2 id="understanding-game-title"></h2>
+            <p class="situation-text" id="understanding-situation"></p>
+            <div class="understanding-question">
+              <p id="understanding-question"></p>
+              <div class="understanding-options" id="understanding-options"></div>
+              <p class="understanding-feedback" id="understanding-feedback" aria-live="polite"></p>
+            </div>
+          </div>
+          <article class="understanding-reveal" id="understanding-reveal" hidden>
+            <p class="tiny-label">THE UNDERSTANDING WE KEPT ✦</p>
+            <h3>Space was never distance.</h3>
+            <p id="understanding-lesson"></p>
+            <blockquote id="understanding-original"></blockquote>
+            <p class="understanding-footnote">You changed the way I understood friendship—and that made our bond more beautiful.</p>
+            <div class="moment-saved"><span aria-hidden="true">✓</span><p><strong>Moment 1 is safe.</strong><br />Four more understandings will join it.</p></div>
+          </article>
         </section>
       </section>
     </main>

@@ -1,5 +1,6 @@
 import { loadState, saveState, resetState } from './state.js';
 import { createQuiz } from './quiz.js';
+import { understandingMoments } from '../data/understandings.js';
 
 let state = loadState();
 let bootTimer;
@@ -27,6 +28,8 @@ function renderFirstMemory() {
   document.getElementById('conversation-task').hidden = !unlocked || secondUnlocked;
   document.getElementById('memory-two').hidden = !secondUnlocked;
   document.getElementById('understanding-intro').hidden = !secondUnlocked;
+  document.getElementById('understanding-game').hidden = !secondUnlocked;
+  if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
     button.classList.toggle('collected', collected);
@@ -90,6 +93,48 @@ document.getElementById('continue-to-memory-two').addEventListener('click', () =
 document.getElementById('continue-to-understanding').addEventListener('click', () => {
   document.getElementById('understanding-intro')
     .scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+function renderUnderstandingMoment() {
+  const moment = understandingMoments[0];
+  const savedAnswer = state.understandingAnswers[0];
+  document.getElementById('understanding-game-title').textContent = moment.title;
+  document.getElementById('understanding-situation').textContent = moment.situation;
+  document.getElementById('understanding-question').textContent = moment.question;
+  document.getElementById('understanding-lesson').textContent = moment.understanding;
+  document.getElementById('understanding-original').textContent = moment.originalWords;
+  const options = document.getElementById('understanding-options');
+  options.replaceChildren();
+  moment.options.forEach((label, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'understanding-option';
+    button.innerHTML = `<span>${String.fromCharCode(65 + index)}</span><span></span>`;
+    button.lastElementChild.textContent = label;
+    if (savedAnswer !== undefined) {
+      button.disabled = true;
+      if (index === moment.correctAnswer) button.classList.add('correct');
+      else if (index === savedAnswer) button.classList.add('incorrect');
+    }
+    button.addEventListener('click', () => answerUnderstandingMoment(index));
+    options.append(button);
+  });
+  document.getElementById('understanding-feedback').textContent = savedAnswer === undefined ? 'Choose the understanding that became ours.' : savedAnswer === moment.correctAnswer ? moment.correctMessage : moment.incorrectMessage;
+  document.getElementById('understanding-reveal').hidden = savedAnswer === undefined;
+}
+
+function answerUnderstandingMoment(answerIndex) {
+  if (state.understandingAnswers[0] !== undefined) return;
+  state.understandingAnswers[0] = answerIndex;
+  saveState(state);
+  renderUnderstandingMoment();
+  window.setTimeout(() => {
+    document.getElementById('understanding-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+  }, prefersReducedMotion.matches ? 0 : 400);
+}
+
+document.getElementById('start-understanding-game').addEventListener('click', () => {
+  renderUnderstandingMoment();
+  document.getElementById('understanding-game').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {

@@ -56,13 +56,12 @@ This will be a five-round game celebrating the understanding Dhyan and Gunjan cr
 
 #### Situation 1
 
-- What happened:
-- What each of you initially felt or thought:
-- What you discussed:
-- The understanding or rule you created together:
-- Three believable wrong options, if you have ideas:
-- What Dhyan wants to say after she answers:
-- Keep any part private or vague?
+- What happened: Dhyan believed close friends should talk daily and have many conversations. When Gunjan said she was focusing on her studies, he felt she did not have time to talk to him.
+- What Dhyan initially thought: “Yaar, aane to time j nathi vaato karvano...”
+- What Gunjan helped him understand: A good friendship does not require constant conversation.
+- The understanding created together: “Sari friendship hoy to ghani badhi vaato thay evu necessary nathi. Amuk vaar potani ane bijani space ne respect kari ne pan bahu sara friends bani sakiye.”
+- Meaning to celebrate: Giving each other space was an act of respect, not evidence that the friendship was becoming weaker.
+- Interaction: Four choices ask what they learned; the real answer celebrates respecting each other’s space.
 
 #### Situation 2
 
