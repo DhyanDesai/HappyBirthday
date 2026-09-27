@@ -50,7 +50,48 @@ Provide **8–15** real memories. Nine can fill the proposed vault. For each, co
 - **Interactive task:** Sweetu catches three floating conversation notes—dreams, family, and the future. Collecting all three reveals the memory as a surprise.
 - **Still needed:** A specific example of advice she gave, if Dhyan wants to include one; an approximate period; and any related screenshot or photo.
 
-Memory 3:
+### Memory 3 — The understanding we built
+
+This will be a three-round game celebrating the understanding Dhyan and Gunjan created through difficult situations and deep conversations. The third situation is the most important and receives a distinct emotional presentation. Completing it reveals their promise in a separate, beautiful ending. No situation, agreement, or promise should be invented.
+
+#### Situation 1
+
+- What happened: Dhyan believed close friends should talk daily and have many conversations. When Gunjan said she was focusing on her studies, he felt she did not have time to talk to him.
+- What Dhyan initially thought: “Yaar, aane to time j nathi vaato karvano...”
+- What Gunjan helped him understand: A good friendship does not require constant conversation.
+- The understanding created together: “Sari friendship hoy to ghani badhi vaato thay evu necessary nathi. Amuk vaar potani ane bijani space ne respect kari ne pan bahu sara friends bani sakiye.”
+- Meaning to celebrate: Giving each other space was an act of respect, not evidence that the friendship was becoming weaker.
+- Interaction: Four choices ask what they learned; the real answer celebrates respecting each other’s space.
+
+#### Situation 2
+
+- What happened: Gunjan spoke to some older friends on calls but often said no when Dhyan asked to call. Dhyan wondered whether he was less special to her or whether there was another reason.
+- What Gunjan helped him understand: She had her own reasons why calls were not always possible. Even without a reason, whether to call should remain the person’s choice.
+- The understanding created together: “Call kare to j sara friends kehvay evu jaroori nathi. Chat par pan badhi vaato thai shake.”
+- Why it mattered: Gunjan also made an effort so Dhyan would not feel that she would never call him. Whenever it was possible for her, she called.
+- Fun ending in Dhyan's words: “E badha call ma every second while talking to you I was blushing.”
+- Interaction: Four choices ask whether calls measure closeness; the real answer celebrates choice, circumstances, chat, and mutual effort.
+
+#### Situation 3
+
+- **Role in the journey:** The most important understanding and emotional centerpiece of this level.
+- What happened: Dhyan felt their daily conversations had become repetitive. He compared their bond with other best friends who talked about many topics, met in person, and shared more visible life experiences.
+- Dhyan's mistake: He explained this comparison to Gunjan without knowing how deeply she disliked comparisons. Although he tried not to sound rude, his words hurt her badly.
+- What Gunjan explained: Their bond should never be measured against somebody else’s. Every person and every friendship is different and special for different reasons.
+- What Dhyan realized: He had overlooked how much Gunjan had already changed his life. She met him when he felt depressed, lost, alone, stuck in his past, and prone to overthinking. She helped him become a better person and taught him to respect individual personalities because nobody is the same.
+- Why it is the most important moment: Even while hurt, Gunjan did not abandon him. She listened, understood where his thinking had gone wrong, and helped him correct it. Dhyan realized their bond was more valuable than anything he had compared it with.
+- Core understanding: “Every bond is different and special because of different reasons. We should absolutely never compare our bond with someone else’s.”
+- Presentation: Four-stage slow build-up before the question, followed by a distinct emotional reveal.
+
+#### Promise reveal after Situation 3
+
+Before the promise, completing Situation 3 unlocks a large chapter reveal connecting the three lessons: space, personal choice, and never comparing their bond. Its central message is that the bond became stronger because both people stayed, communicated, listened, and corrected themselves. The promise remains a separate final reveal.
+
+- The exact promise:
+- When or why you made it:
+- What the promise means to Dhyan today:
+- Exact words or Gujarati phrasing to preserve:
+- Any symbol, color, photo, or song associated with it:
 
 Memory 4:
 
