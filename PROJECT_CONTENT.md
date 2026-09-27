@@ -50,7 +50,59 @@ Provide **8–15** real memories. Nine can fill the proposed vault. For each, co
 - **Interactive task:** Sweetu catches three floating conversation notes—dreams, family, and the future. Collecting all three reveals the memory as a surprise.
 - **Still needed:** A specific example of advice she gave, if Dhyan wants to include one; an approximate period; and any related screenshot or photo.
 
-Memory 3:
+### Memory 3 — The understanding we built
+
+This will be a five-round game celebrating the understanding Dhyan and Gunjan created through difficult situations and deep conversations. Each round needs the real situation and the conclusion they reached; no situation or agreement should be invented.
+
+#### Situation 1
+
+- What happened:
+- What each of you initially felt or thought:
+- What you discussed:
+- The understanding or rule you created together:
+- Three believable wrong options, if you have ideas:
+- What Dhyan wants to say after she answers:
+- Keep any part private or vague?
+
+#### Situation 2
+
+- What happened:
+- What each of you initially felt or thought:
+- What you discussed:
+- The understanding or rule you created together:
+- Three believable wrong options, if you have ideas:
+- What Dhyan wants to say after she answers:
+- Keep any part private or vague?
+
+#### Situation 3
+
+- What happened:
+- What each of you initially felt or thought:
+- What you discussed:
+- The understanding or rule you created together:
+- Three believable wrong options, if you have ideas:
+- What Dhyan wants to say after she answers:
+- Keep any part private or vague?
+
+#### Situation 4
+
+- What happened:
+- What each of you initially felt or thought:
+- What you discussed:
+- The understanding or rule you created together:
+- Three believable wrong options, if you have ideas:
+- What Dhyan wants to say after she answers:
+- Keep any part private or vague?
+
+#### Situation 5
+
+- What happened:
+- What each of you initially felt or thought:
+- What you discussed:
+- The understanding or rule you created together:
+- Three believable wrong options, if you have ideas:
+- What Dhyan wants to say after she answers:
+- Keep any part private or vague?
 
 Memory 4:
 
