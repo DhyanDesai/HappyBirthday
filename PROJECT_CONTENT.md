@@ -87,10 +87,10 @@ This will be a three-round game celebrating the understanding Dhyan and Gunjan c
 
 Before the promise, completing Situation 3 unlocks a large chapter reveal connecting the three lessons: space, personal choice, and never comparing their bond. Its central message is that the bond became stronger because both people stayed, communicated, listened, and corrected themselves. What follows is a new promise Dhyan is giving Gunjan on her birthday, presented as a personal gift rather than a promise they previously made together.
 
-- The exact promise:
-- Why you want to give her this promise now:
-- What the promise means to Dhyan today:
-- Exact words or Gujarati phrasing to preserve:
+- The exact promise: Whatever happens in Dhyan's life, their bond, their understanding, and the magic they share will never become less—not even by 1%. No amount of attention or distraction can keep him away from her or make him forget what the friendship means.
+- Why you want to give her this promise now: It is Dhyan's birthday promise to protect the understanding, comfort, and friendship they created together.
+- What the promise means to Dhyan today: Their bond will remain important regardless of changes or distractions elsewhere in his life.
+- Exact words or Gujarati phrasing to preserve: “E apada be besties vachhe nu magic chhe.”
 - Any symbol, color, photo, or song associated with it:
 
 Memory 4:
