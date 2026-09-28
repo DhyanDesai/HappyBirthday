@@ -92,6 +92,7 @@ Before the promise, completing Situation 3 unlocks a large chapter reveal connec
 - What the promise means to Dhyan today: Their bond will remain important regardless of changes or distractions elsewhere in his life.
 - Exact words or Gujarati phrasing to preserve: “E apada be besties vachhe nu magic chhe.”
 - Any symbol, color, photo, or song associated with it:
+- Final video surprise: `assets/video/sweetu-and-softyyy.mp4`, supplied by Dhyan. It appears only after the birthday promise and requires Sweetu to press play; audio does not autoplay.
 
 Memory 4:
 
