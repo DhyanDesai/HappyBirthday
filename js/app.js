@@ -33,6 +33,8 @@ function renderFirstMemory() {
   document.getElementById('understanding-intro').hidden = !secondUnlocked;
   document.getElementById('understanding-game').hidden = !secondUnlocked;
   document.getElementById('big-understanding-reveal').hidden = !secondUnlocked || !state.understandingRevealUnlocked;
+  document.getElementById('promise-reveal').hidden = !secondUnlocked || !state.promiseOpened;
+  document.getElementById('video-reveal').hidden = !secondUnlocked || !state.videoRevealed;
   if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
@@ -199,6 +201,18 @@ document.getElementById('unlock-big-reveal').addEventListener('click', () => {
   document.getElementById('unlock-big-reveal').hidden = true;
   document.getElementById('big-understanding-reveal').hidden = false;
   document.getElementById('big-understanding-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+document.getElementById('open-promise').addEventListener('click', () => {
+  state.promiseOpened = true;
+  saveState(state);
+  document.getElementById('promise-reveal').hidden = false;
+  document.getElementById('promise-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+document.getElementById('reveal-video').addEventListener('click', () => {
+  state.videoRevealed = true;
+  saveState(state);
+  document.getElementById('video-reveal').hidden = false;
+  document.getElementById('video-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
