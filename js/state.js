@@ -1,5 +1,5 @@
 const STORAGE_KEY = 'sweetu-birthday-quest-v1';
-const initialState = () => ({ currentStage: 'intro', quizScore: 0, quizAnswers: [], memoryPieces: [], understandingAnswers: [], understandingBuildUpSeen: false, understandingRevealUnlocked: false, unlockedMemories: [], discoveredSecrets: [], completedLevels: [] });
+const initialState = () => ({ currentStage: 'intro', quizScore: 0, quizAnswers: [], memoryPieces: [], understandingAnswers: [], understandingBuildUpSeen: false, understandingRevealUnlocked: false, promiseOpened: false, videoRevealed: false, unlockedMemories: [], discoveredSecrets: [], completedLevels: [] });
 const VALID_STAGES = new Set(['intro', 'welcome', 'quiz', 'chapter']);
 
 export function loadState() {
@@ -17,6 +17,8 @@ export function loadState() {
       understandingAnswers: Array.isArray(saved.understandingAnswers) ? saved.understandingAnswers.slice(0, 3) : [],
       understandingBuildUpSeen: saved.understandingBuildUpSeen === true,
       understandingRevealUnlocked: saved.understandingRevealUnlocked === true,
+      promiseOpened: saved.promiseOpened === true,
+      videoRevealed: saved.videoRevealed === true,
       unlockedMemories: Array.isArray(saved.unlockedMemories) ? saved.unlockedMemories.filter(id => id === 1 || id === 2) : [],
       discoveredSecrets: Array.isArray(saved.discoveredSecrets) ? saved.discoveredSecrets : [],
       completedLevels

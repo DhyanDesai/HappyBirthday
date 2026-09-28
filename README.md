@@ -18,7 +18,7 @@ Personal content lives in `PROJECT_CONTENT.md`; the planned journey is in `PROJE
 
 ## Deployment
 
-The GitHub Pages workflow publishes only `index.html`, `css/`, `js/`, and `data/`. Planning documents are excluded from the Pages artifact. A push to `main` triggers a deployment after Pages is enabled with GitHub Actions as its source.
+The GitHub Pages workflow publishes only `index.html`, `css/`, `js/`, `data/`, and approved files in `assets/`. Planning documents are excluded from the Pages artifact. A push to `main` triggers a deployment after Pages is enabled with GitHub Actions as its source.
 
 ## Branch workflow
 

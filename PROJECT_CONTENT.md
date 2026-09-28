@@ -83,15 +83,16 @@ This will be a three-round game celebrating the understanding Dhyan and Gunjan c
 - Core understanding: “Every bond is different and special because of different reasons. We should absolutely never compare our bond with someone else’s.”
 - Presentation: Four-stage slow build-up before the question, followed by a distinct emotional reveal.
 
-#### Promise reveal after Situation 3
+#### Dhyan's birthday promise after Situation 3
 
-Before the promise, completing Situation 3 unlocks a large chapter reveal connecting the three lessons: space, personal choice, and never comparing their bond. Its central message is that the bond became stronger because both people stayed, communicated, listened, and corrected themselves. The promise remains a separate final reveal.
+Before the promise, completing Situation 3 unlocks a large chapter reveal connecting the three lessons: space, personal choice, and never comparing their bond. Its central message is that the bond became stronger because both people stayed, communicated, listened, and corrected themselves. What follows is a new promise Dhyan is giving Gunjan on her birthday, presented as a personal gift rather than a promise they previously made together.
 
-- The exact promise:
-- When or why you made it:
-- What the promise means to Dhyan today:
-- Exact words or Gujarati phrasing to preserve:
+- The exact promise: Whatever happens in Dhyan's life, their bond, their understanding, and the magic they share will never become less—not even by 1%. No amount of attention or distraction can keep him away from her or make him forget what the friendship means.
+- Why you want to give her this promise now: It is Dhyan's birthday promise to protect the understanding, comfort, and friendship they created together.
+- What the promise means to Dhyan today: Their bond will remain important regardless of changes or distractions elsewhere in his life.
+- Exact words or Gujarati phrasing to preserve: “E apada be besties vachhe nu magic chhe.”
 - Any symbol, color, photo, or song associated with it:
+- Final video surprise: `assets/video/sweetu-and-softyyy.mp4`, supplied by Dhyan. It appears only after the birthday promise and requires Sweetu to press play; audio does not autoplay.
 
 Memory 4:
 
