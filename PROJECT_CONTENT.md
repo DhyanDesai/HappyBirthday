@@ -133,28 +133,25 @@ Dhyan likes surprising Gunjan by sending her songs that remind him of her. This 
 
 | Song | Artist | Why it reminds you of Sweetu | Memory # | Link or permitted file |
 | --- | --- | --- | --- | --- |
-| | | | | |
-| | | | | |
-| | | | | |
+| Taarefon Se | Amit Trivedi / Dear Zindagi | Her favorite song; it reminds Dhyan of her cuteness. | Radio dedication 1 | `assets/music/taarefon-se.mp3`, supplied by Dhyan |
+| Mane Tu Mali Gai | Jigardan Gadhavi | This is how Dhyan sees her. | Radio dedication 2 | `assets/music/mane-tu-mali-gai.mp3`, supplied by Dhyan |
+| Madhubala | Amit Trivedi | This expresses what Dhyan wants to tell her every time. | Radio dedication 3 | `assets/music/madhubala.mp3`, supplied by Dhyan |
 
-## 4. Ten secret messages
+Radio Sweetu uses the three MP3 files supplied by Dhyan. Playback requires a tap and never starts automatically.
 
-Short, specific messages for discoverable flowers. A mix of compliments, private jokes, small memories, and a surprise works best.
+## 4. Five secret flowers
+
+Five discoverable flowers celebrate specific things Dhyan values about Gunjan. Every flower is visibly tappable and remains reachable after it appears.
 
 | Flower | Message or rough thought |
 | --- | --- |
-| 1 | |
-| 2 | |
-| 3 | |
-| 4 | |
-| 5 | |
-| 6 | |
-| 7 | |
-| 8 | |
-| 9 | |
-| 10 | |
+| 1 | Dhyan admires Gunjan's dedication toward her goals. |
+| 2 | She never forgets to text him when she becomes available. |
+| 3 | Their nicknames for each other—Sweetu and Softyyy—are one of the sweetest parts of their friendship. |
+| 4 | She may not realize how safe Dhyan feels with her; she made her heart feel like a home where he can be real and let his heart out. |
+| 5 | “Jetlo real hu tari same thau chhu, I am sure bija koi ni sathe aa connection to nai j bane—never.” That unique honesty makes her irreplaceable. |
 
-**Distinct secret ending:**
+**Distinct secret ending:** Finding all five connects the messages into one note: admiration, noticing small gestures, shared sweetness, emotional safety, and an irreplaceable connection.
 
 ## 5. Final letter
 
@@ -179,7 +176,7 @@ If no photos are supplied, the design can use text memories and intentionally em
 
 ## 7. Special interactions
 
-- Required: ten discoverable flowers, a separate secret ending, playful wrong-answer feedback, optional radio controls, progress restore, reset for testing.
+- Required: five discoverable flowers, a separate secret ending, playful wrong-answer feedback, optional radio controls, progress restore, reset for testing.
 - Candidate Easter eggs from brief: repeated antenna taps, repeated logo taps, optional keyboard sequence or long press. Choose any that fit your real jokes.
 - Your requested interaction or private joke:
 

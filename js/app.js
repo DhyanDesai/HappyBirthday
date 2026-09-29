@@ -1,6 +1,8 @@
 import { loadState, saveState, resetState } from './state.js';
 import { createQuiz } from './quiz.js';
 import { understandingMoments } from '../data/understandings.js';
+import { secretFlowers, allFlowersMessage } from '../data/secrets.js';
+import { radioTracks } from '../data/songs.js';
 
 let state = loadState();
 let bootTimer;
@@ -35,6 +37,8 @@ function renderFirstMemory() {
   document.getElementById('big-understanding-reveal').hidden = !secondUnlocked || !state.understandingRevealUnlocked;
   document.getElementById('promise-reveal').hidden = !secondUnlocked || !state.promiseOpened;
   document.getElementById('video-reveal').hidden = !secondUnlocked || !state.videoRevealed;
+  document.getElementById('radio-sweetu').hidden = !secondUnlocked || !state.radioUnlocked;
+  if (secondUnlocked && state.radioUnlocked) renderRadio();
   if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
@@ -51,9 +55,82 @@ function showStage(stage, persist = true) {
   if (persist) saveState(state);
   if (stage === 'quiz') quiz.render();
   if (stage === 'chapter') renderFirstMemory();
+  document.getElementById('secret-tracker').hidden = stage !== 'chapter';
+  if (stage === 'chapter') renderSecrets();
   if (stage === 'welcome' && persist) document.getElementById('welcome-footnote').textContent = 'A tiny journey through us, made just for you.';
   document.getElementById('app').focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function renderSecrets() {
+  document.getElementById('secret-count').textContent = `${state.discoveredSecrets.length} / ${secretFlowers.length} found`;
+  document.querySelectorAll('[data-secret-id]').forEach(button => {
+    button.classList.toggle('discovered', state.discoveredSecrets.includes(Number(button.dataset.secretId)));
+  });
+}
+
+function openSecret(id) {
+  const secret = secretFlowers.find(item => item.id === id);
+  if (!secret) return;
+  if (!state.discoveredSecrets.includes(id)) {
+    state.discoveredSecrets.push(id);
+    state.discoveredSecrets.sort((a, b) => a - b);
+    saveState(state);
+  }
+  renderSecrets();
+  document.getElementById('secret-number').textContent = `SECRET FLOWER ${String(id).padStart(2, '0')}`;
+  document.getElementById('secret-dialog-title').textContent = secret.title;
+  document.getElementById('secret-dialog-message').textContent = secret.message;
+  const allFound = state.discoveredSecrets.length === secretFlowers.length;
+  document.getElementById('all-flowers-message').hidden = !allFound;
+  document.getElementById('all-flowers-copy').textContent = allFlowersMessage;
+  const dialog = document.getElementById('secret-dialog');
+  if (!dialog.open) dialog.showModal();
+}
+
+function renderRadio() {
+  const track = radioTracks[state.radioTrack];
+  document.getElementById('radio-frequency').textContent = track.frequency;
+  document.getElementById('radio-track-title').textContent = track.title;
+  document.getElementById('radio-track-artist').textContent = track.artist;
+  document.getElementById('radio-dedication').textContent = track.dedication;
+  const player = document.getElementById('radio-player');
+  if (player.dataset.track !== track.id) {
+    player.pause();
+    player.src = track.file;
+    player.dataset.track = track.id;
+    player.load();
+  }
+  const buttons = document.getElementById('station-buttons');
+  buttons.replaceChildren();
+  radioTracks.forEach((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'station-button';
+    button.classList.toggle('active', index === state.radioTrack);
+    button.setAttribute('aria-pressed', String(index === state.radioTrack));
+    button.innerHTML = `<span>${item.frequency}</span><small>${item.title}</small>`;
+    button.addEventListener('click', () => {
+      const selectedPlayer = document.getElementById('radio-player');
+      const isCurrentStation = index === state.radioTrack && selectedPlayer.dataset.track === item.id;
+
+      if (isCurrentStation && !selectedPlayer.paused) {
+        selectedPlayer.pause();
+        return;
+      }
+
+      if (!isCurrentStation) {
+        state.radioTrack = index;
+        saveState(state);
+        renderRadio();
+      }
+
+      document.getElementById('radio-player').play().catch(() => {
+        // The native audio controls remain available if a browser blocks playback.
+      });
+    });
+    buttons.append(button);
+  });
 }
 
 function finishBoot() {
@@ -214,6 +291,18 @@ document.getElementById('reveal-video').addEventListener('click', () => {
   document.getElementById('video-reveal').hidden = false;
   document.getElementById('video-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
+document.getElementById('open-radio').addEventListener('click', () => {
+  state.radioUnlocked = true;
+  saveState(state);
+  document.getElementById('radio-sweetu').hidden = false;
+  renderRadio();
+  document.getElementById('radio-sweetu').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
+document.querySelectorAll('[data-secret-id]').forEach(button => {
+  button.addEventListener('click', () => openSecret(Number(button.dataset.secretId)));
+});
+document.getElementById('close-secret').addEventListener('click', () => document.getElementById('secret-dialog').close());
+document.getElementById('keep-exploring').addEventListener('click', () => document.getElementById('secret-dialog').close());
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-welcome-choice]').forEach(option => option.classList.toggle('selected', option === button));
@@ -262,6 +351,10 @@ document.querySelectorAll('[data-memory-piece]').forEach(button => {
 document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
+  document.getElementById('radio-player').removeAttribute('src');
+  document.getElementById('radio-player').removeAttribute('data-track');
+  document.getElementById('radio-player').load();
+  if (document.getElementById('secret-dialog').open) document.getElementById('secret-dialog').close();
   understandingIndex = 0;
   buildUpIndex = 0;
   bootLines.replaceChildren();
