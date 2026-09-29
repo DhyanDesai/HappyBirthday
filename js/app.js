@@ -94,9 +94,13 @@ function renderRadio() {
   document.getElementById('radio-track-title').textContent = track.title;
   document.getElementById('radio-track-artist').textContent = track.artist;
   document.getElementById('radio-dedication').textContent = track.dedication;
-  document.getElementById('radio-player').src = track.embedUrl;
-  document.getElementById('radio-source-link').href = track.sourceUrl;
-  document.getElementById('radio-platform').textContent = track.platform;
+  const player = document.getElementById('radio-player');
+  if (player.dataset.track !== track.id) {
+    player.pause();
+    player.src = track.file;
+    player.dataset.track = track.id;
+    player.load();
+  }
   const buttons = document.getElementById('station-buttons');
   buttons.replaceChildren();
   radioTracks.forEach((item, index) => {
@@ -333,7 +337,9 @@ document.querySelectorAll('[data-memory-piece]').forEach(button => {
 document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
-  document.getElementById('radio-player').src = '';
+  document.getElementById('radio-player').removeAttribute('src');
+  document.getElementById('radio-player').removeAttribute('data-track');
+  document.getElementById('radio-player').load();
   if (document.getElementById('secret-dialog').open) document.getElementById('secret-dialog').close();
   understandingIndex = 0;
   buildUpIndex = 0;
