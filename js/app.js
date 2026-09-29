@@ -1,6 +1,7 @@
 import { loadState, saveState, resetState } from './state.js';
 import { createQuiz } from './quiz.js';
 import { understandingMoments } from '../data/understandings.js';
+import { secretFlowers, allFlowersMessage } from '../data/secrets.js';
 
 let state = loadState();
 let bootTimer;
@@ -51,9 +52,37 @@ function showStage(stage, persist = true) {
   if (persist) saveState(state);
   if (stage === 'quiz') quiz.render();
   if (stage === 'chapter') renderFirstMemory();
+  document.getElementById('secret-tracker').hidden = stage !== 'chapter';
+  if (stage === 'chapter') renderSecrets();
   if (stage === 'welcome' && persist) document.getElementById('welcome-footnote').textContent = 'A tiny journey through us, made just for you.';
   document.getElementById('app').focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function renderSecrets() {
+  document.getElementById('secret-count').textContent = `${state.discoveredSecrets.length} / ${secretFlowers.length} found`;
+  document.querySelectorAll('[data-secret-id]').forEach(button => {
+    button.classList.toggle('discovered', state.discoveredSecrets.includes(Number(button.dataset.secretId)));
+  });
+}
+
+function openSecret(id) {
+  const secret = secretFlowers.find(item => item.id === id);
+  if (!secret) return;
+  if (!state.discoveredSecrets.includes(id)) {
+    state.discoveredSecrets.push(id);
+    state.discoveredSecrets.sort((a, b) => a - b);
+    saveState(state);
+  }
+  renderSecrets();
+  document.getElementById('secret-number').textContent = `SECRET FLOWER ${String(id).padStart(2, '0')}`;
+  document.getElementById('secret-dialog-title').textContent = secret.title;
+  document.getElementById('secret-dialog-message').textContent = secret.message;
+  const allFound = state.discoveredSecrets.length === secretFlowers.length;
+  document.getElementById('all-flowers-message').hidden = !allFound;
+  document.getElementById('all-flowers-copy').textContent = allFlowersMessage;
+  const dialog = document.getElementById('secret-dialog');
+  if (!dialog.open) dialog.showModal();
 }
 
 function finishBoot() {
@@ -214,6 +243,11 @@ document.getElementById('reveal-video').addEventListener('click', () => {
   document.getElementById('video-reveal').hidden = false;
   document.getElementById('video-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
+document.querySelectorAll('[data-secret-id]').forEach(button => {
+  button.addEventListener('click', () => openSecret(Number(button.dataset.secretId)));
+});
+document.getElementById('close-secret').addEventListener('click', () => document.getElementById('secret-dialog').close());
+document.getElementById('keep-exploring').addEventListener('click', () => document.getElementById('secret-dialog').close());
 document.querySelectorAll('[data-welcome-choice]').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-welcome-choice]').forEach(option => option.classList.toggle('selected', option === button));
@@ -262,6 +296,7 @@ document.querySelectorAll('[data-memory-piece]').forEach(button => {
 document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
+  if (document.getElementById('secret-dialog').open) document.getElementById('secret-dialog').close();
   understandingIndex = 0;
   buildUpIndex = 0;
   bootLines.replaceChildren();
