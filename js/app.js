@@ -111,9 +111,23 @@ function renderRadio() {
     button.setAttribute('aria-pressed', String(index === state.radioTrack));
     button.innerHTML = `<span>${item.frequency}</span><small>${item.title}</small>`;
     button.addEventListener('click', () => {
-      state.radioTrack = index;
-      saveState(state);
-      renderRadio();
+      const selectedPlayer = document.getElementById('radio-player');
+      const isCurrentStation = index === state.radioTrack && selectedPlayer.dataset.track === item.id;
+
+      if (isCurrentStation && !selectedPlayer.paused) {
+        selectedPlayer.pause();
+        return;
+      }
+
+      if (!isCurrentStation) {
+        state.radioTrack = index;
+        saveState(state);
+        renderRadio();
+      }
+
+      document.getElementById('radio-player').play().catch(() => {
+        // The native audio controls remain available if a browser blocks playback.
+      });
     });
     buttons.append(button);
   });
