@@ -133,9 +133,11 @@ Dhyan likes surprising Gunjan by sending her songs that remind him of her. This 
 
 | Song | Artist | Why it reminds you of Sweetu | Memory # | Link or permitted file |
 | --- | --- | --- | --- | --- |
-| | | | | |
-| | | | | |
-| | | | | |
+| Taarefon Se | Amit Trivedi / Dear Zindagi | Her favorite song; it reminds Dhyan of her cuteness. | Radio dedication 1 | `assets/music/taarefon-se.mp3`, supplied by Dhyan |
+| Mane Tu Mali Gai | Jigardan Gadhavi | This is how Dhyan sees her. | Radio dedication 2 | `assets/music/mane-tu-mali-gai.mp3`, supplied by Dhyan |
+| Madhubala | Amit Trivedi | This expresses what Dhyan wants to tell her every time. | Radio dedication 3 | `assets/music/madhubala.mp3`, supplied by Dhyan |
+
+Radio Sweetu uses the three MP3 files supplied by Dhyan. Playback requires a tap and never starts automatically.
 
 ## 4. Five secret flowers
 
