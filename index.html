@@ -275,6 +275,36 @@
             </video>
             <p>made from music, captions, and a lot of feelings ♡</p>
           </div>
+          <button type="button" class="primary-button radio-entry-button" id="open-radio">Tune in to Radio Sweetu <span aria-hidden="true">↓</span></button>
+        </section>
+
+        <section class="radio-sweetu" id="radio-sweetu" aria-labelledby="radio-title" hidden>
+          <div class="radio-airwaves" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="radio-heading">
+            <p class="tiny-label">NOW BROADCASTING · JUST FOR ONE LISTENER</p>
+            <h2 id="radio-title">Radio Sweetu</h2>
+            <p><strong id="radio-frequency">98.8</strong> FM</p>
+          </div>
+          <div class="radio-console">
+            <div class="radio-speaker" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="radio-controls">
+              <div class="frequency-window"><small>NOW PLAYING</small><strong id="radio-track-title"></strong><span id="radio-track-artist"></span></div>
+              <div class="frequency-scale" aria-hidden="true"><span>88</span><i></i><span>98.8</span><i></i><span>108</span></div>
+              <div class="station-buttons" id="station-buttons" aria-label="Choose a Radio Sweetu track"></div>
+            </div>
+          </div>
+          <div class="radio-dedication">
+            <p class="tiny-label">DEDICATED TO SWEETU ♡</p>
+            <blockquote id="radio-dedication"></blockquote>
+          </div>
+          <div class="radio-player-wrap">
+            <p>Tap play when you are ready. The music will never start by itself.</p>
+            <iframe id="radio-player" title="Radio Sweetu music player" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <a id="radio-source-link" class="radio-source-link" href="#" target="_blank" rel="noopener">Open this track on <span id="radio-platform"></span> ↗</a>
+          </div>
+          <div class="final-frequency">
+            <span aria-hidden="true">✦</span><div><small>FINAL FREQUENCY · LOCKED FOR NOW</small><p>Your birthday wish will be the last transmission.</p></div>
+          </div>
         </section>
       </section>
     </main>

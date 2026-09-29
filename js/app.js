@@ -2,6 +2,7 @@ import { loadState, saveState, resetState } from './state.js';
 import { createQuiz } from './quiz.js';
 import { understandingMoments } from '../data/understandings.js';
 import { secretFlowers, allFlowersMessage } from '../data/secrets.js';
+import { radioTracks } from '../data/songs.js';
 
 let state = loadState();
 let bootTimer;
@@ -36,6 +37,8 @@ function renderFirstMemory() {
   document.getElementById('big-understanding-reveal').hidden = !secondUnlocked || !state.understandingRevealUnlocked;
   document.getElementById('promise-reveal').hidden = !secondUnlocked || !state.promiseOpened;
   document.getElementById('video-reveal').hidden = !secondUnlocked || !state.videoRevealed;
+  document.getElementById('radio-sweetu').hidden = !secondUnlocked || !state.radioUnlocked;
+  if (secondUnlocked && state.radioUnlocked) renderRadio();
   if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
     const collected = state.memoryPieces.includes(button.dataset.memoryPiece);
@@ -83,6 +86,33 @@ function openSecret(id) {
   document.getElementById('all-flowers-copy').textContent = allFlowersMessage;
   const dialog = document.getElementById('secret-dialog');
   if (!dialog.open) dialog.showModal();
+}
+
+function renderRadio() {
+  const track = radioTracks[state.radioTrack];
+  document.getElementById('radio-frequency').textContent = track.frequency;
+  document.getElementById('radio-track-title').textContent = track.title;
+  document.getElementById('radio-track-artist').textContent = track.artist;
+  document.getElementById('radio-dedication').textContent = track.dedication;
+  document.getElementById('radio-player').src = track.embedUrl;
+  document.getElementById('radio-source-link').href = track.sourceUrl;
+  document.getElementById('radio-platform').textContent = track.platform;
+  const buttons = document.getElementById('station-buttons');
+  buttons.replaceChildren();
+  radioTracks.forEach((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'station-button';
+    button.classList.toggle('active', index === state.radioTrack);
+    button.setAttribute('aria-pressed', String(index === state.radioTrack));
+    button.innerHTML = `<span>${item.frequency}</span><small>${item.title}</small>`;
+    button.addEventListener('click', () => {
+      state.radioTrack = index;
+      saveState(state);
+      renderRadio();
+    });
+    buttons.append(button);
+  });
 }
 
 function finishBoot() {
@@ -243,6 +273,13 @@ document.getElementById('reveal-video').addEventListener('click', () => {
   document.getElementById('video-reveal').hidden = false;
   document.getElementById('video-reveal').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
+document.getElementById('open-radio').addEventListener('click', () => {
+  state.radioUnlocked = true;
+  saveState(state);
+  document.getElementById('radio-sweetu').hidden = false;
+  renderRadio();
+  document.getElementById('radio-sweetu').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+});
 document.querySelectorAll('[data-secret-id]').forEach(button => {
   button.addEventListener('click', () => openSecret(Number(button.dataset.secretId)));
 });
@@ -296,6 +333,7 @@ document.querySelectorAll('[data-memory-piece]').forEach(button => {
 document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
+  document.getElementById('radio-player').src = '';
   if (document.getElementById('secret-dialog').open) document.getElementById('secret-dialog').close();
   understandingIndex = 0;
   buildUpIndex = 0;

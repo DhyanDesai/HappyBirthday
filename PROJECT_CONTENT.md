@@ -133,9 +133,11 @@ Dhyan likes surprising Gunjan by sending her songs that remind him of her. This 
 
 | Song | Artist | Why it reminds you of Sweetu | Memory # | Link or permitted file |
 | --- | --- | --- | --- | --- |
-| | | | | |
-| | | | | |
-| | | | | |
+| Taarefon Se | Dear Zindagi | Her favorite song; it reminds Dhyan of her cuteness. | Radio dedication 1 | https://youtu.be/Kyg8J0mt5nY |
+| Alfaaz | Hamza Malik, Zain Zohaib | This is how Dhyan sees her. | Radio dedication 2 | https://open.spotify.com/track/0tW2gwaRzFQQrgr2UCO56G |
+| Madhubala | Amit Trivedi | This expresses what Dhyan wants to tell her every time. | Radio dedication 3 | https://open.spotify.com/track/3hcwpXiJtR7kwDrWllcH0v |
+
+Radio Sweetu uses official YouTube and Spotify embeds. Playback requires a tap and no copyrighted song file is distributed with the site.
 
 ## 4. Five secret flowers
 
