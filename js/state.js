@@ -20,7 +20,7 @@ export function loadState() {
       promiseOpened: saved.promiseOpened === true,
       videoRevealed: saved.videoRevealed === true,
       unlockedMemories: Array.isArray(saved.unlockedMemories) ? saved.unlockedMemories.filter(id => id === 1 || id === 2) : [],
-      discoveredSecrets: Array.isArray(saved.discoveredSecrets) ? saved.discoveredSecrets : [],
+      discoveredSecrets: Array.isArray(saved.discoveredSecrets) ? saved.discoveredSecrets.filter(id => Number.isInteger(id) && id >= 1 && id <= 5) : [],
       completedLevels
     };
   } catch {

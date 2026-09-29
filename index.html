@@ -116,6 +116,7 @@
           </div>
         </div>
         <article class="memory-reveal" id="memory-reveal" aria-labelledby="memory-title" hidden>
+          <button type="button" class="secret-flower flower-one" data-secret-id="1" aria-label="Open secret flower one"><span aria-hidden="true">✿</span><small>secret</small></button>
           <p class="tiny-label">MEMORY 01 · UNLOCKED</p>
           <h2 id="memory-title">The first real hello</h2>
           <p>It was my birthday, and you wished me on Telegram. That was our first real interaction. Slowly, our conversations moved to WhatsApp.</p>
@@ -142,6 +143,7 @@
         </section>
 
         <article class="memory-reveal memory-two" id="memory-two" aria-labelledby="memory-two-title" hidden>
+          <button type="button" class="secret-flower flower-two" data-secret-id="2" aria-label="Open secret flower two"><span aria-hidden="true">✿</span><small>secret</small></button>
           <p class="tiny-label">MEMORY 02 · UNLOCKED</p>
           <h2 id="memory-two-title">When “talking” became trust</h2>
           <p>Then we really started getting to know each other. You told me about yourself—your dreams, your family, and the career you wanted. I told you those parts of my life too.</p>
@@ -154,6 +156,7 @@
         </article>
 
         <section class="understanding-intro" id="understanding-intro" aria-labelledby="understanding-title" hidden>
+          <button type="button" class="secret-flower flower-three" data-secret-id="3" aria-label="Open secret flower three"><span aria-hidden="true">✿</span><small>secret</small></button>
           <div class="understanding-sky" aria-hidden="true">
             <span class="magic-star star-one">✦</span><span class="magic-star star-two">✧</span><span class="magic-star star-three">✦</span><span class="magic-star star-four">·</span><span class="magic-star star-five">✧</span>
             <div class="magic-orbit orbit-one"><span>we spoke</span></div>
@@ -214,6 +217,7 @@
         </section>
 
         <section class="big-understanding-reveal" id="big-understanding-reveal" aria-labelledby="big-reveal-title" hidden>
+          <button type="button" class="secret-flower flower-four" data-secret-id="4" aria-label="Open secret flower four"><span aria-hidden="true">✿</span><small>secret</small></button>
           <div class="reveal-burst" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>·</span><span>✧</span><span>✦</span></div>
           <p class="tiny-label">CHAPTER COMPLETE · THE UNDERSTANDING WE BUILT</p>
           <h2 id="big-reveal-title">It was never about<br /><em>getting everything right.</em></h2>
@@ -237,6 +241,7 @@
         </section>
 
         <section class="promise-reveal" id="promise-reveal" aria-labelledby="promise-title" hidden>
+          <button type="button" class="secret-flower flower-five" data-secret-id="5" aria-label="Open secret flower five"><span aria-hidden="true">✿</span><small>secret</small></button>
           <div class="promise-thread" aria-hidden="true"><span></span><i>✦</i><span></span></div>
           <p class="tiny-label">MY BIRTHDAY PROMISE TO YOU</p>
           <h2 id="promise-title">Sweetu,<br /><em>I promise you this.</em></h2>
@@ -273,6 +278,24 @@
         </section>
       </section>
     </main>
+
+    <aside class="secret-tracker" id="secret-tracker" aria-live="polite" hidden>
+      <span aria-hidden="true">✿</span><div><strong id="secret-count">0 / 5 found</strong><small>tap the little flowers</small></div>
+    </aside>
+
+    <dialog class="secret-dialog" id="secret-dialog" aria-labelledby="secret-dialog-title">
+      <button type="button" class="dialog-close" id="close-secret" aria-label="Close secret">×</button>
+      <div class="secret-bloom" aria-hidden="true">✿</div>
+      <p class="tiny-label" id="secret-number">SECRET FLOWER 01</p>
+      <h2 id="secret-dialog-title"></h2>
+      <p id="secret-dialog-message"></p>
+      <div class="all-flowers-message" id="all-flowers-message" hidden>
+        <span aria-hidden="true">✦ ✿ ✦</span>
+        <h3>All five secrets found.</h3>
+        <p id="all-flowers-copy"></p>
+      </div>
+      <button type="button" class="primary-button" id="keep-exploring">Keep exploring <span aria-hidden="true">♡</span></button>
+    </dialog>
 
     <footer class="site-footer"><span>MADE FOR GUNJAN, WITH LOVE</span><button type="button" class="text-button" id="reset-progress">Reset progress</button></footer>
   </body>
