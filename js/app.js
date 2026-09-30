@@ -3,6 +3,7 @@ import { createQuiz } from './quiz.js';
 import { understandingMoments } from '../data/understandings.js';
 import { secretFlowers, allFlowersMessage } from '../data/secrets.js';
 import { radioTracks } from '../data/songs.js';
+import { createFinale } from './finale.js';
 
 let state = loadState();
 let bootTimer;
@@ -16,6 +17,7 @@ const bootLines = document.getElementById('boot-lines');
 const result = document.getElementById('terminal-result');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const quiz = createQuiz({ getState: () => state, saveState });
+const finale = createFinale({ getState: () => state, saveState, prefersReducedMotion });
 const understandingTotal = 3;
 let understandingIndex = Math.max(0, Math.min(state.understandingAnswers.length - 1, understandingMoments.length - 1));
 let buildUpIndex = 0;
@@ -38,6 +40,7 @@ function renderFirstMemory() {
   document.getElementById('promise-reveal').hidden = !secondUnlocked || !state.promiseOpened;
   document.getElementById('video-reveal').hidden = !secondUnlocked || !state.videoRevealed;
   document.getElementById('radio-sweetu').hidden = !secondUnlocked || !state.radioUnlocked;
+  finale.render();
   if (secondUnlocked && state.radioUnlocked) renderRadio();
   if (secondUnlocked) renderUnderstandingMoment();
   document.querySelectorAll('[data-memory-piece]').forEach(button => {
@@ -298,6 +301,7 @@ document.getElementById('open-radio').addEventListener('click', () => {
   renderRadio();
   document.getElementById('radio-sweetu').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
 });
+document.getElementById('open-finale').addEventListener('click', () => finale.open());
 document.querySelectorAll('[data-secret-id]').forEach(button => {
   button.addEventListener('click', () => openSecret(Number(button.dataset.secretId)));
 });
@@ -351,6 +355,7 @@ document.querySelectorAll('[data-memory-piece]').forEach(button => {
 document.getElementById('reset-progress').addEventListener('click', () => {
   if (!window.confirm('Start the quest over on this device?')) return;
   state = resetState();
+  finale.reset();
   document.getElementById('radio-player').removeAttribute('src');
   document.getElementById('radio-player').removeAttribute('data-track');
   document.getElementById('radio-player').load();

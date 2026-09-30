@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/casual.css" />
+    <link rel="stylesheet" href="css/finale.css" />
     <script type="module" src="js/app.js"></script>
   </head>
   <body>
@@ -302,7 +303,75 @@
             <audio id="radio-player" controls preload="metadata" aria-label="Radio Sweetu music player">Your browser cannot play this audio.</audio>
           </div>
           <div class="final-frequency">
-            <span aria-hidden="true">✦</span><div><small>FINAL FREQUENCY · LOCKED FOR NOW</small><p>Your birthday wish will be the last transmission.</p></div>
+            <span aria-hidden="true">✦</span><div><small>FINAL FREQUENCY · FOUND</small><p>Your birthday wish is waiting behind one last challenge.</p></div>
+          </div>
+          <button type="button" class="primary-button finale-entry-button" id="open-finale">Unlock the final transmission <span aria-hidden="true">→</span></button>
+        </section>
+
+        <section class="birthday-finale" id="birthday-finale" aria-labelledby="finale-title" hidden>
+          <div class="finale-sparkles" aria-hidden="true"><span>✦</span><span>♡</span><span>✧</span><span>✦</span></div>
+          <header class="finale-heading">
+            <p class="tiny-label">FINAL LEVEL · DEFINITELY VERY SERIOUS</p>
+            <h2 id="finale-title">Your birthday message<br /><em>is almost yours.</em></h2>
+            <p>I said <em>almost</em>, Sweetu. You did not think I would make the final surprise that easy, did you?</p>
+          </header>
+
+          <div class="finale-stage" data-finale-step="game-one">
+            <p class="finale-level">MINIGAME 01</p><h3>Heart Check</h3>
+            <p>Tap the hearts from <strong>1 to 5</strong> in the correct order.</p>
+            <div class="heart-game" id="heart-game" aria-label="Tap hearts one through five"></div>
+            <p class="finale-feedback" id="heart-feedback" aria-live="polite">Start with heart number 1.</p>
+          </div>
+
+          <div class="finale-stage" data-finale-step="mystery-boxes" hidden>
+            <p class="finale-level">ONE TINY DECISION</p><h3>Choose your message</h3>
+            <p>Only one of these boxes has the birthday message. Choose wisely.</p>
+            <div class="mystery-boxes" id="mystery-boxes">
+              <button type="button" data-mystery-box="1" aria-label="Choose gift box one">🎁<small>BOX 01</small></button>
+              <button type="button" data-mystery-box="2" aria-label="Choose gift box two">🎁<small>BOX 02</small></button>
+              <button type="button" data-mystery-box="3" aria-label="Choose gift box three">🎁<small>BOX 03</small></button>
+            </div>
+            <div class="wrong-choice" id="wrong-choice" hidden><strong>Wrong choice! 😌</strong><p>Plot twist: every box was the wrong box. One more minigame, please.</p><button type="button" class="primary-button" id="continue-final-game">Okay, very funny <span aria-hidden="true">→</span></button></div>
+          </div>
+
+          <div class="finale-stage" data-finale-step="game-two" hidden>
+            <p class="finale-level">MINIGAME 02</p><h3>Build Our Equation</h3>
+            <p>Tap the pieces in the order that completes the only correct equation.</p>
+            <div class="phrase-answer" id="phrase-answer" aria-live="polite"><span>?</span><span>+</span><span>?</span><span>=</span><span>?</span></div>
+            <div class="phrase-pieces" id="phrase-pieces"></div>
+            <p class="finale-feedback" id="phrase-feedback">Hint: begin with the birthday girl.</p>
+          </div>
+
+          <div class="finale-stage" data-finale-step="gift" hidden>
+            <p class="finale-level">PRIZE UNLOCKED</p><h3>Open your gift</h3>
+            <p>There is definitely no unnecessary teasing left. Probably.</p>
+            <div class="nested-gift-area" id="nested-gift-area"></div>
+            <p class="finale-feedback" id="gift-feedback">Tap the gift box to open it.</p>
+          </div>
+
+          <div class="finale-stage key-stage" data-finale-step="key" hidden>
+            <p class="finale-level">ITEM EARNED</p><div class="earned-key" aria-hidden="true">🗝️</div><h3>You found a key!</h3>
+            <p>And very conveniently, there is a mysterious door right here.</p>
+            <button type="button" class="finale-door" id="finale-door"><span class="door-knob" aria-hidden="true"></span><strong>Use the key</strong></button>
+          </div>
+
+          <div class="finale-stage safe-stage" data-finale-step="safe" hidden>
+            <p class="finale-level">THE LAST LOCK · FOR REAL THIS TIME</p><div class="safe-icon" aria-hidden="true"><span>♡</span></div><h3>The Sweetu Safe</h3>
+            <p class="password-hint"><strong>Password hint:</strong> The name Softyyy calls you most. Six letters, all lowercase.</p>
+            <form id="safe-form"><label for="safe-password">Enter the password</label><div class="safe-input-row"><input id="safe-password" name="password" type="text" inputmode="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="20" /><button type="submit">OPEN</button></div></form>
+            <p class="finale-feedback" id="safe-feedback" aria-live="polite"></p>
+          </div>
+
+          <div class="finale-stage letter-stage" data-finale-step="letter" hidden>
+            <div class="confetti" id="finale-confetti" aria-hidden="true"></div>
+            <p class="finale-level">SAFE OPEN · MESSAGE FOUND</p><h3>Happy Birthday, Sweetu.</h3>
+            <p>After all those locks, this one is finally yours. Tap the letter and listen.</p>
+            <button type="button" class="birthday-letter" id="birthday-letter" aria-expanded="false"><span class="letter-flap" aria-hidden="true"></span><span class="letter-heart" aria-hidden="true">♡</span><strong>For Sweetu</strong></button>
+            <div class="letter-message" id="letter-message" hidden>
+              <p class="tiny-label">A BIRTHDAY MESSAGE FROM SOFTYYY</p><h4>This is everything I wanted to tell you.</h4>
+              <audio id="birthday-audio" controls preload="metadata" aria-label="Dhyan's birthday message for Sweetu"><source src="assets/audio/happy-birthday-sweetu.m4a" type="audio/mp4" />Your browser cannot play this recording.</audio>
+              <p>Made with a lot of feelings, especially for you ♡</p>
+            </div>
           </div>
         </section>
       </section>
