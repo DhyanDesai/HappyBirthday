@@ -207,55 +207,6 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     renderCompilation();
     document.getElementById('compilation-video').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
   });
-  const compilationVideo = document.getElementById('cuteness-video');
-  const compilationSoundtrack = document.getElementById('compilation-soundtrack');
-  const compilationPlay = document.getElementById('play-compilation');
-  const compilationStatus = document.getElementById('compilation-status');
-  compilationPlay.addEventListener('click', () => {
-    if (!compilationVideo.paused) {
-      compilationVideo.pause();
-      compilationSoundtrack.pause();
-      return;
-    }
-    compilationVideo.muted = true;
-    compilationSoundtrack.muted = false;
-    compilationSoundtrack.volume = 1;
-    compilationSoundtrack.currentTime = compilationVideo.currentTime;
-    compilationStatus.textContent = 'Starting the video and MP3 soundtrack together...';
-    Promise.all([compilationVideo.play(), compilationSoundtrack.play()]).catch(() => {
-      compilationStatus.textContent = 'Tap play on the soundtrack control below once more.';
-    });
-  });
-  compilationVideo.addEventListener('playing', () => {
-    compilationPlay.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause compilation</strong>';
-    if (compilationSoundtrack.paused) {
-      compilationSoundtrack.currentTime = compilationVideo.currentTime;
-      compilationSoundtrack.play().catch(() => { compilationStatus.textContent = 'Tap play on the soundtrack control above the video.'; });
-    }
-  });
-  compilationVideo.addEventListener('pause', () => {
-    compilationSoundtrack.pause();
-    compilationPlay.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue compilation with sound</strong>';
-    if (compilationVideo.currentTime > 0 && !compilationVideo.ended) compilationStatus.textContent = 'Paused. Tap continue whenever you are ready.';
-  });
-  compilationVideo.addEventListener('seeking', () => { compilationSoundtrack.currentTime = compilationVideo.currentTime; });
-  compilationVideo.addEventListener('timeupdate', () => {
-    if (!compilationSoundtrack.paused && Math.abs(compilationVideo.currentTime - compilationSoundtrack.currentTime) > 0.4) compilationSoundtrack.currentTime = compilationVideo.currentTime;
-  });
-  compilationSoundtrack.addEventListener('playing', () => {
-    compilationStatus.textContent = 'MP3 soundtrack playing with the video ♡';
-  });
-  compilationSoundtrack.addEventListener('play', () => {
-    compilationVideo.muted = true;
-    if (compilationVideo.paused) {
-      compilationVideo.currentTime = compilationSoundtrack.currentTime;
-      compilationVideo.play().catch(() => { compilationStatus.textContent = 'Sound is playing. Tap play on the video below.'; });
-    }
-  });
-  compilationSoundtrack.addEventListener('error', () => {
-    compilationStatus.textContent = 'The MP3 soundtrack could not load. Refresh once and try again.';
-  });
-
   return {
     open() {
       const state = getState();
@@ -274,8 +225,6 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       document.getElementById('birthday-audio').currentTime = 0;
       document.getElementById('cuteness-video').pause();
       document.getElementById('cuteness-video').currentTime = 0;
-      document.getElementById('compilation-soundtrack').pause();
-      document.getElementById('compilation-soundtrack').currentTime = 0;
       document.getElementById('letter-message').hidden = true;
       document.getElementById('birthday-letter').classList.remove('opened');
       document.getElementById('birthday-letter').setAttribute('aria-expanded', 'false');
