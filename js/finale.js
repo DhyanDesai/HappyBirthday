@@ -150,8 +150,38 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     letter.setAttribute('aria-expanded', 'true');
     message.hidden = false;
     const audio = document.getElementById('birthday-audio');
-    audio.play().catch(() => { /* The visible controls provide a playback fallback. */ });
+    audio.play().catch(() => {
+      document.getElementById('birthday-audio-status').textContent = 'Tap the big play button to begin your message.';
+    });
     message.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+  });
+  const birthdayAudio = document.getElementById('birthday-audio');
+  const audioToggle = document.getElementById('birthday-audio-toggle');
+  const audioStatus = document.getElementById('birthday-audio-status');
+  audioToggle.addEventListener('click', () => {
+    if (!birthdayAudio.paused) {
+      birthdayAudio.pause();
+      return;
+    }
+    audioStatus.textContent = 'Starting your birthday message...';
+    birthdayAudio.play().catch(() => {
+      audioStatus.textContent = 'The recording could not start. Try the play control just below.';
+    });
+  });
+  birthdayAudio.addEventListener('playing', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause birthday message</strong>';
+    audioStatus.textContent = 'Now playing Dhyan’s message for Sweetu ♡';
+  });
+  birthdayAudio.addEventListener('pause', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue birthday message</strong>';
+    if (birthdayAudio.currentTime > 0 && !birthdayAudio.ended) audioStatus.textContent = 'Paused. Your place is safe.';
+  });
+  birthdayAudio.addEventListener('ended', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">↻</span><strong>Play the message again</strong>';
+    audioStatus.textContent = 'Happy Birthday, Sweetu ♡';
+  });
+  birthdayAudio.addEventListener('error', () => {
+    audioStatus.textContent = 'The recording could not load. Refresh once and try again.';
   });
 
   return {
@@ -169,6 +199,7 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       phraseIndex = 0;
       giftLayer = 0;
       document.getElementById('birthday-audio').pause();
+      document.getElementById('birthday-audio').currentTime = 0;
       document.getElementById('letter-message').hidden = true;
       document.getElementById('birthday-letter').classList.remove('opened');
       document.getElementById('birthday-letter').setAttribute('aria-expanded', 'false');

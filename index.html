@@ -369,7 +369,9 @@
             <button type="button" class="birthday-letter" id="birthday-letter" aria-expanded="false"><span class="letter-flap" aria-hidden="true"></span><span class="letter-heart" aria-hidden="true">♡</span><strong>For Sweetu</strong></button>
             <div class="letter-message" id="letter-message" hidden>
               <p class="tiny-label">A BIRTHDAY MESSAGE FROM SOFTYYY</p><h4>This is everything I wanted to tell you.</h4>
-              <audio id="birthday-audio" controls preload="metadata" aria-label="Dhyan's birthday message for Sweetu"><source src="assets/audio/happy-birthday-sweetu.m4a" type="audio/mp4" />Your browser cannot play this recording.</audio>
+              <button type="button" class="birthday-audio-toggle" id="birthday-audio-toggle"><span aria-hidden="true">▶</span><strong>Play birthday message</strong></button>
+              <p class="audio-status" id="birthday-audio-status" aria-live="polite">13 minutes · recorded especially for you</p>
+              <audio id="birthday-audio" controls playsinline preload="metadata" aria-label="Dhyan's birthday message for Sweetu"><source src="assets/audio/happy-birthday-sweetu.m4a" type="audio/mp4" />Your browser cannot play this recording.</audio>
               <p>Made with a lot of feelings, especially for you ♡</p>
             </div>
           </div>
