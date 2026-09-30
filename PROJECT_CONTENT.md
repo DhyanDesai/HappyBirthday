@@ -158,6 +158,7 @@ Five discoverable flowers celebrate specific things Dhyan values about Gunjan. E
 The final reveal uses an MP3 conversion of Dhyan's supplied recording at `assets/audio/happy-birthday-sweetu.mp3`. It appears only after the final quest and starts when Sweetu taps the revealed letter.
 
 After the recording finishes, a final teasing note reveals `assets/video/sweetu-cuteness-compilation-with-sound.mp4`, a compilation made from the photos and videos Sweetu shared with Dhyan.
+For browser reliability, its soundtrack is also supplied separately at `assets/audio/sweetu-cuteness-compilation-soundtrack.mp3` and synchronized with the muted video during playback.
 
 Rough notes in Dhyan's own words are enough. These will be edited into a letter only after the facts and tone are confirmed.
 
