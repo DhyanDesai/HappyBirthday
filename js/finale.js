@@ -207,6 +207,61 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     renderCompilation();
     document.getElementById('compilation-video').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
   });
+  const compilationVideo = document.getElementById('cuteness-video');
+  const compilationSoundtrack = document.getElementById('compilation-soundtrack');
+  const compilationPlay = document.getElementById('play-compilation');
+  const compilationStatus = document.getElementById('compilation-status');
+
+  compilationPlay.addEventListener('click', async () => {
+    if (!compilationVideo.paused) {
+      compilationVideo.pause();
+      compilationSoundtrack.pause();
+      return;
+    }
+
+    if (compilationVideo.ended || compilationSoundtrack.ended) {
+      compilationVideo.currentTime = 0;
+      compilationSoundtrack.currentTime = 0;
+    } else {
+      compilationSoundtrack.currentTime = compilationVideo.currentTime;
+    }
+    compilationVideo.muted = true;
+    compilationSoundtrack.muted = false;
+    compilationSoundtrack.volume = 1;
+    compilationStatus.textContent = 'Starting video and sound together...';
+
+    const results = await Promise.allSettled([compilationVideo.play(), compilationSoundtrack.play()]);
+    if (results.some(result => result.status === 'rejected')) {
+      compilationVideo.pause();
+      compilationSoundtrack.pause();
+      compilationStatus.textContent = 'Playback was blocked. Tap this same button once more.';
+    }
+  });
+  compilationVideo.addEventListener('playing', () => {
+    compilationPlay.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause compilation</strong>';
+    compilationStatus.textContent = 'Video and sound are playing together ♡';
+  });
+  compilationVideo.addEventListener('pause', () => {
+    compilationSoundtrack.pause();
+    if (compilationVideo.ended) return;
+    compilationPlay.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue compilation</strong>';
+    if (compilationVideo.currentTime > 0) compilationStatus.textContent = 'Paused. Tap once to continue both.';
+  });
+  compilationVideo.addEventListener('timeupdate', () => {
+    if (!compilationSoundtrack.paused && Math.abs(compilationVideo.currentTime - compilationSoundtrack.currentTime) > 0.25) {
+      compilationSoundtrack.currentTime = compilationVideo.currentTime;
+    }
+  });
+  compilationVideo.addEventListener('ended', () => {
+    compilationSoundtrack.pause();
+    compilationPlay.innerHTML = '<span aria-hidden="true">↻</span><strong>Play compilation again</strong>';
+    compilationStatus.textContent = 'The cutest evidence collection is complete ♡';
+  });
+  compilationSoundtrack.addEventListener('error', () => {
+    compilationVideo.pause();
+    compilationStatus.textContent = 'The soundtrack could not load. Refresh once and try again.';
+  });
+
   return {
     open() {
       const state = getState();
@@ -225,6 +280,8 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       document.getElementById('birthday-audio').currentTime = 0;
       document.getElementById('cuteness-video').pause();
       document.getElementById('cuteness-video').currentTime = 0;
+      document.getElementById('compilation-soundtrack').pause();
+      document.getElementById('compilation-soundtrack').currentTime = 0;
       document.getElementById('letter-message').hidden = true;
       document.getElementById('birthday-letter').classList.remove('opened');
       document.getElementById('birthday-letter').setAttribute('aria-expanded', 'false');
