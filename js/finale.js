@@ -32,7 +32,7 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       button.addEventListener('click', () => {
         const feedback = document.getElementById('heart-feedback');
         if (number !== nextHeart) {
-          feedback.textContent = `That heart is too excited. Find number ${nextHeart} first!`;
+          feedback.textContent = `Sweetu, counting pan bhuli gai? 😭 Number ${nextHeart} is waiting for you first!`;
           button.classList.add('oops');
           window.setTimeout(() => button.classList.remove('oops'), 350);
           return;
@@ -63,7 +63,7 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       button.addEventListener('click', () => {
         const feedback = document.getElementById('phrase-feedback');
         if (word !== phrase[phraseIndex]) {
-          feedback.textContent = phraseIndex === 0 ? 'The birthday girl comes first!' : 'Almost! Think of our equation.';
+          feedback.textContent = phraseIndex === 0 ? 'Excuse me—the birthday girl does not come first in her own equation? 😌' : 'Sweetu, how could you break our very scientific equation? Try again!';
           return;
         }
         phraseIndex += 1;
@@ -137,10 +137,17 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     }
   }
 
+  const boxTeases = [
+    'Box 01? Such confidence, Sweetu. Such wonderfully incorrect confidence. 😌',
+    'The middle box felt safe, right? I knew you would think that. Wrong choice! 😂',
+    'Box 03?! Sweetu, how could you fall for the last-box trick? 😭'
+  ];
   document.querySelectorAll('[data-mystery-box]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-mystery-box]').forEach(box => { box.disabled = true; });
     button.classList.add('chosen');
-    document.getElementById('wrong-choice').hidden = false;
+    const wrongChoice = document.getElementById('wrong-choice');
+    wrongChoice.querySelector('strong').textContent = boxTeases[Number(button.dataset.mysteryBox) - 1];
+    wrongChoice.hidden = false;
   }));
   document.getElementById('continue-final-game').addEventListener('click', () => setStep('game-two'));
   document.getElementById('finale-door').addEventListener('click', () => setStep('safe'));
@@ -148,7 +155,7 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     event.preventDefault();
     const input = document.getElementById('safe-password');
     if (input.value.trim().toLowerCase() !== 'sweetu') {
-      document.getElementById('safe-feedback').textContent = 'That did not open it. Read the hint once more, Sweetu ♡';
+      document.getElementById('safe-feedback').textContent = 'Sweetu forgot the password “sweetu”? 😭 This plot twist was not in my plan. Read the hint once more!';
       input.select();
       return;
     }

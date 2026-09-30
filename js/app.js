@@ -319,7 +319,7 @@ document.querySelectorAll('[data-clue-answer]').forEach(button => {
   button.addEventListener('click', () => {
     const feedback = document.getElementById('clue-feedback');
     if (button.dataset.clueAnswer !== 'telegram') {
-      feedback.textContent = 'Close! That came a little later. Try the other one.';
+      feedback.textContent = 'Sweetu! WhatsApp already? 😭 How could you forget our original headquarters—Telegram came first. Try again!';
       button.classList.add('incorrect');
       return;
     }

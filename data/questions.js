@@ -6,7 +6,7 @@ export const levelOneQuestions = [
     options: ['Forget it immediately', 'Overthink it a lot', 'Become mysteriously calm', 'Solve it in five seconds'],
     correctAnswer: 1,
     correctMessage: 'Correct. You know my brain has a lot of tabs open.',
-    incorrectMessage: 'Nice try. The answer is overthink it a lot. You knew that.'
+    incorrectMessage: 'Sweetu?! How could you miss the thing I have practically turned into a full-time hobby? 😭 I overthink—a lot. You definitely knew that.'
   },
   {
     id: 'rohit',
@@ -14,7 +14,7 @@ export const levelOneQuestions = [
     options: ['Virat Kohli', 'MS Dhoni', 'Rohit Sharma', 'Jasprit Bumrah'],
     correctAnswer: 2,
     correctMessage: 'Rohit Sharma. Of course you got that one.',
-    incorrectMessage: 'It is Rohit Sharma. I may have mentioned him once or twice.'
+    incorrectMessage: 'Excuse me, Sweetu?! Rohit Sharma just felt a disturbance in the universe. 🏏 You know how much I love him!'
   },
   {
     id: 'songs',
@@ -22,6 +22,6 @@ export const levelOneQuestions = [
     options: ['Weather reports', 'Study schedules', 'Songs that remind me of you', 'Very formal emails'],
     correctAnswer: 2,
     correctMessage: 'Exactly. Some songs just make me think of you.',
-    incorrectMessage: 'It is songs that remind me of you. That one was personal.'
+    incorrectMessage: 'How could you forget my surprise-song attacks, madam? 🎵 If a song reminds me of you, obviously it is being sent to you.'
   }
 ];
