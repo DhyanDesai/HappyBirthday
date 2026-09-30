@@ -1,5 +1,5 @@
 const STORAGE_KEY = 'sweetu-birthday-quest-v1';
-const initialState = () => ({ currentStage: 'intro', quizScore: 0, quizAnswers: [], memoryPieces: [], understandingAnswers: [], understandingBuildUpSeen: false, understandingRevealUnlocked: false, promiseOpened: false, videoRevealed: false, radioUnlocked: false, radioTrack: 0, unlockedMemories: [], discoveredSecrets: [], completedLevels: [] });
+const initialState = () => ({ currentStage: 'intro', quizScore: 0, quizAnswers: [], memoryPieces: [], understandingAnswers: [], understandingBuildUpSeen: false, understandingRevealUnlocked: false, promiseOpened: false, videoRevealed: false, radioUnlocked: false, radioTrack: 0, finaleUnlocked: false, finaleStep: 'game-one', compilationUnlocked: false, compilationOpened: false, unlockedMemories: [], discoveredSecrets: [], completedLevels: [] });
 const VALID_STAGES = new Set(['intro', 'welcome', 'quiz', 'chapter']);
 
 export function loadState() {
@@ -21,6 +21,10 @@ export function loadState() {
       videoRevealed: saved.videoRevealed === true,
       radioUnlocked: saved.radioUnlocked === true,
       radioTrack: Number.isInteger(saved.radioTrack) && saved.radioTrack >= 0 && saved.radioTrack <= 2 ? saved.radioTrack : 0,
+      finaleUnlocked: saved.finaleUnlocked === true,
+      finaleStep: ['game-one', 'mystery-boxes', 'game-two', 'gift', 'key', 'safe', 'letter'].includes(saved.finaleStep) ? saved.finaleStep : 'game-one',
+      compilationUnlocked: saved.compilationUnlocked === true,
+      compilationOpened: saved.compilationOpened === true,
       unlockedMemories: Array.isArray(saved.unlockedMemories) ? saved.unlockedMemories.filter(id => id === 1 || id === 2) : [],
       discoveredSecrets: Array.isArray(saved.discoveredSecrets) ? saved.discoveredSecrets.filter(id => Number.isInteger(id) && id >= 1 && id <= 5) : [],
       completedLevels
