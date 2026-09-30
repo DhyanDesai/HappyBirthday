@@ -205,9 +205,33 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     state.compilationOpened = true;
     saveState(state);
     renderCompilation();
-    const video = document.getElementById('cuteness-video');
-    video.play().catch(() => { /* Visible controls remain available on restrictive browsers. */ });
     document.getElementById('compilation-video').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+  });
+  const compilationVideo = document.getElementById('cuteness-video');
+  const compilationPlay = document.getElementById('play-compilation');
+  const compilationStatus = document.getElementById('compilation-status');
+  compilationPlay.addEventListener('click', () => {
+    if (!compilationVideo.paused) {
+      compilationVideo.pause();
+      return;
+    }
+    compilationVideo.muted = false;
+    compilationVideo.volume = 1;
+    compilationStatus.textContent = 'Starting with sound on...';
+    compilationVideo.play().catch(() => {
+      compilationStatus.textContent = 'Tap the video’s play button below once more.';
+    });
+  });
+  compilationVideo.addEventListener('playing', () => {
+    compilationPlay.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause compilation</strong>';
+    compilationStatus.textContent = compilationVideo.muted ? 'Playing muted—tap the speaker icon in the video controls.' : 'Playing with sound ♡';
+  });
+  compilationVideo.addEventListener('pause', () => {
+    compilationPlay.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue compilation with sound</strong>';
+    if (compilationVideo.currentTime > 0 && !compilationVideo.ended) compilationStatus.textContent = 'Paused. Tap continue whenever you are ready.';
+  });
+  compilationVideo.addEventListener('volumechange', () => {
+    if (!compilationVideo.paused) compilationStatus.textContent = compilationVideo.muted ? 'Sound is muted. Tap the speaker icon below.' : 'Playing with sound ♡';
   });
 
   return {
