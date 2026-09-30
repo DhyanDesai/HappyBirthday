@@ -1,0 +1,300 @@
+const STEPS = ['game-one', 'mystery-boxes', 'game-two', 'gift', 'key', 'safe', 'letter'];
+const phrase = ['Sweetu', 'Softyyy', 'Magic'];
+
+export function createFinale({ getState, saveState, prefersReducedMotion }) {
+  let nextHeart = 1;
+  let phraseIndex = 0;
+  let giftLayer = 0;
+
+  const section = document.getElementById('birthday-finale');
+  const scrollToStage = () => section.querySelector('[data-finale-step]:not([hidden])')
+    ?.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+
+  function setStep(step, scroll = true) {
+    const state = getState();
+    state.finaleStep = step;
+    saveState(state);
+    render();
+    if (scroll) window.setTimeout(scrollToStage, prefersReducedMotion.matches ? 0 : 180);
+  }
+
+  function renderHearts() {
+    const area = document.getElementById('heart-game');
+    area.replaceChildren();
+    [3, 1, 5, 2, 4].forEach(number => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'heart-target';
+      button.textContent = number;
+      button.setAttribute('aria-label', `Heart number ${number}`);
+      button.disabled = number < nextHeart;
+      if (number < nextHeart) button.classList.add('collected');
+      button.addEventListener('click', () => {
+        const feedback = document.getElementById('heart-feedback');
+        if (number !== nextHeart) {
+          feedback.textContent = `Sweetu, counting pan bhuli gai? 😭 Number ${nextHeart} is waiting for you first!`;
+          button.classList.add('oops');
+          window.setTimeout(() => button.classList.remove('oops'), 350);
+          return;
+        }
+        nextHeart += 1;
+        if (nextHeart > 5) {
+          feedback.textContent = 'Heart check passed. Obviously. Opening your choices...';
+          window.setTimeout(() => setStep('mystery-boxes'), prefersReducedMotion.matches ? 0 : 650);
+          return;
+        }
+        feedback.textContent = `Perfect. Now find heart number ${nextHeart}.`;
+        renderHearts();
+      });
+      area.append(button);
+    });
+  }
+
+  function renderPhrase() {
+    const answer = document.getElementById('phrase-answer');
+    answer.innerHTML = `<span>${phraseIndex > 0 ? phrase[0] : '?'}</span><span>+</span><span>${phraseIndex > 1 ? phrase[1] : '?'}</span><span>=</span><span>${phraseIndex > 2 ? phrase[2] : '?'}</span>`;
+    const pieces = document.getElementById('phrase-pieces');
+    pieces.replaceChildren();
+    ['Magic', 'Sweetu', 'Softyyy'].forEach(word => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = word;
+      button.disabled = phrase.slice(0, phraseIndex).includes(word);
+      button.addEventListener('click', () => {
+        const feedback = document.getElementById('phrase-feedback');
+        if (word !== phrase[phraseIndex]) {
+          feedback.textContent = phraseIndex === 0 ? 'Excuse me—the birthday girl does not come first in her own equation? 😌' : 'Sweetu, how could you break our very scientific equation? Try again!';
+          return;
+        }
+        phraseIndex += 1;
+        renderPhrase();
+        if (phraseIndex === phrase.length) {
+          feedback.textContent = 'Sweetu + Softyyy = Magic. Correct forever.';
+          window.setTimeout(() => setStep('gift'), prefersReducedMotion.matches ? 0 : 750);
+        } else {
+          feedback.textContent = phraseIndex === 1 ? 'Now add her Softyyy.' : 'And together they make...?';
+        }
+      });
+      pieces.append(button);
+    });
+  }
+
+  function renderGift() {
+    const area = document.getElementById('nested-gift-area');
+    area.replaceChildren();
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `nested-gift gift-layer-${giftLayer + 1}`;
+    button.innerHTML = `<span aria-hidden="true">🎁</span><strong>Open me</strong><small>BOX ${giftLayer + 1} OF 4</small>`;
+    button.addEventListener('click', () => {
+      giftLayer += 1;
+      if (giftLayer >= 4) {
+        document.getElementById('gift-feedback').textContent = 'No more boxes. The real prize is shining through!';
+        window.setTimeout(() => setStep('key'), prefersReducedMotion.matches ? 0 : 500);
+        return;
+      }
+      document.getElementById('gift-feedback').textContent = `A smaller box?! ${4 - giftLayer} more to go.`;
+      renderGift();
+    });
+    area.append(button);
+  }
+
+  function launchConfetti() {
+    const confetti = document.getElementById('finale-confetti');
+    if (confetti.children.length) return;
+    const colors = ['#f86b9d', '#ffd166', '#78d5c8', '#9d83e6', '#ffffff'];
+    for (let index = 0; index < 56; index += 1) {
+      const piece = document.createElement('i');
+      piece.style.setProperty('--x', `${(index * 37) % 100}%`);
+      piece.style.setProperty('--delay', `${(index % 12) * -0.12}s`);
+      piece.style.setProperty('--spin', `${180 + (index % 5) * 90}deg`);
+      piece.style.background = colors[index % colors.length];
+      confetti.append(piece);
+    }
+  }
+
+  function renderCompilation() {
+    const state = getState();
+    const surprise = document.getElementById('compilation-surprise');
+    const videoWrap = document.getElementById('compilation-video');
+    surprise.hidden = !state.compilationUnlocked;
+    videoWrap.hidden = !state.compilationOpened;
+    document.getElementById('reveal-compilation').hidden = state.compilationOpened;
+  }
+
+  function render() {
+    const state = getState();
+    section.hidden = !state.finaleUnlocked;
+    if (!state.finaleUnlocked) return;
+    const step = STEPS.includes(state.finaleStep) ? state.finaleStep : 'game-one';
+    section.querySelectorAll('[data-finale-step]').forEach(panel => { panel.hidden = panel.dataset.finaleStep !== step; });
+    if (step === 'game-one') renderHearts();
+    if (step === 'game-two') renderPhrase();
+    if (step === 'gift') renderGift();
+    if (step === 'letter') {
+      launchConfetti();
+      renderCompilation();
+    }
+  }
+
+  const boxTeases = [
+    'Box 01? Such confidence, Sweetu. Such wonderfully incorrect confidence. 😌',
+    'The middle box felt safe, right? I knew you would think that. Wrong choice! 😂',
+    'Box 03?! Sweetu, how could you fall for the last-box trick? 😭'
+  ];
+  document.querySelectorAll('[data-mystery-box]').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('[data-mystery-box]').forEach(box => { box.disabled = true; });
+    button.classList.add('chosen');
+    const wrongChoice = document.getElementById('wrong-choice');
+    wrongChoice.querySelector('strong').textContent = boxTeases[Number(button.dataset.mysteryBox) - 1];
+    wrongChoice.hidden = false;
+  }));
+  document.getElementById('continue-final-game').addEventListener('click', () => setStep('game-two'));
+  document.getElementById('finale-door').addEventListener('click', () => setStep('safe'));
+  document.getElementById('safe-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const input = document.getElementById('safe-password');
+    if (input.value.trim().toLowerCase() !== 'sweetu') {
+      document.getElementById('safe-feedback').textContent = 'Sweetu forgot the password “sweetu”? 😭 This plot twist was not in my plan. Read the hint once more!';
+      input.select();
+      return;
+    }
+    document.getElementById('safe-feedback').textContent = 'Password accepted. The safe is opening...';
+    window.setTimeout(() => setStep('letter'), prefersReducedMotion.matches ? 0 : 550);
+  });
+  document.getElementById('birthday-letter').addEventListener('click', () => {
+    const letter = document.getElementById('birthday-letter');
+    const message = document.getElementById('letter-message');
+    letter.classList.add('opened');
+    letter.setAttribute('aria-expanded', 'true');
+    message.hidden = false;
+    const audio = document.getElementById('birthday-audio');
+    audio.play().catch(() => {
+      document.getElementById('birthday-audio-status').textContent = 'Tap the big play button to begin your message.';
+    });
+    message.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+  });
+  const birthdayAudio = document.getElementById('birthday-audio');
+  const audioToggle = document.getElementById('birthday-audio-toggle');
+  const audioStatus = document.getElementById('birthday-audio-status');
+  audioToggle.addEventListener('click', () => {
+    if (!birthdayAudio.paused) {
+      birthdayAudio.pause();
+      return;
+    }
+    audioStatus.textContent = 'Starting your birthday message...';
+    birthdayAudio.play().catch(() => {
+      audioStatus.textContent = 'The recording could not start. Try the play control just below.';
+    });
+  });
+  birthdayAudio.addEventListener('playing', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause birthday message</strong>';
+    audioStatus.textContent = 'Now playing Dhyan’s message for Sweetu ♡';
+  });
+  birthdayAudio.addEventListener('pause', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue birthday message</strong>';
+    if (birthdayAudio.currentTime > 0 && !birthdayAudio.ended) audioStatus.textContent = 'Paused. Your place is safe.';
+  });
+  birthdayAudio.addEventListener('ended', () => {
+    audioToggle.innerHTML = '<span aria-hidden="true">↻</span><strong>Play the message again</strong>';
+    audioStatus.textContent = 'Happy Birthday, Sweetu ♡ But wait...';
+    const state = getState();
+    state.compilationUnlocked = true;
+    saveState(state);
+    renderCompilation();
+    window.setTimeout(() => document.getElementById('compilation-surprise').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' }), prefersReducedMotion.matches ? 0 : 500);
+  });
+  birthdayAudio.addEventListener('error', () => {
+    audioStatus.textContent = 'The recording could not load. Refresh once and try again.';
+  });
+  document.getElementById('reveal-compilation').addEventListener('click', () => {
+    const state = getState();
+    state.compilationOpened = true;
+    saveState(state);
+    renderCompilation();
+    document.getElementById('compilation-video').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
+  });
+  const compilationVideo = document.getElementById('cuteness-video');
+  const compilationSoundtrack = document.getElementById('compilation-soundtrack');
+  const compilationPlay = document.getElementById('play-compilation');
+  const compilationStatus = document.getElementById('compilation-status');
+
+  compilationPlay.addEventListener('click', async () => {
+    if (!compilationVideo.paused) {
+      compilationVideo.pause();
+      compilationSoundtrack.pause();
+      return;
+    }
+
+    if (compilationVideo.ended || compilationSoundtrack.ended) {
+      compilationVideo.currentTime = 0;
+      compilationSoundtrack.currentTime = 0;
+    } else {
+      compilationSoundtrack.currentTime = compilationVideo.currentTime;
+    }
+    compilationVideo.muted = true;
+    compilationSoundtrack.muted = false;
+    compilationSoundtrack.volume = 1;
+    compilationStatus.textContent = 'Starting video and sound together...';
+
+    const results = await Promise.allSettled([compilationVideo.play(), compilationSoundtrack.play()]);
+    if (results.some(result => result.status === 'rejected')) {
+      compilationVideo.pause();
+      compilationSoundtrack.pause();
+      compilationStatus.textContent = 'Playback was blocked. Tap this same button once more.';
+    }
+  });
+  compilationVideo.addEventListener('playing', () => {
+    compilationPlay.innerHTML = '<span aria-hidden="true">❚❚</span><strong>Pause compilation</strong>';
+    compilationStatus.textContent = 'Video and sound are playing together ♡';
+  });
+  compilationVideo.addEventListener('pause', () => {
+    compilationSoundtrack.pause();
+    if (compilationVideo.ended) return;
+    compilationPlay.innerHTML = '<span aria-hidden="true">▶</span><strong>Continue compilation</strong>';
+    if (compilationVideo.currentTime > 0) compilationStatus.textContent = 'Paused. Tap once to continue both.';
+  });
+  compilationVideo.addEventListener('timeupdate', () => {
+    if (!compilationSoundtrack.paused && Math.abs(compilationVideo.currentTime - compilationSoundtrack.currentTime) > 0.25) {
+      compilationSoundtrack.currentTime = compilationVideo.currentTime;
+    }
+  });
+  compilationVideo.addEventListener('ended', () => {
+    compilationSoundtrack.pause();
+    compilationPlay.innerHTML = '<span aria-hidden="true">↻</span><strong>Play compilation again</strong>';
+    compilationStatus.textContent = 'The cutest evidence collection is complete ♡';
+  });
+  compilationSoundtrack.addEventListener('error', () => {
+    compilationVideo.pause();
+    compilationStatus.textContent = 'The soundtrack could not load. Refresh once and try again.';
+  });
+
+  return {
+    open() {
+      const state = getState();
+      state.finaleUnlocked = true;
+      if (!STEPS.includes(state.finaleStep)) state.finaleStep = 'game-one';
+      saveState(state);
+      render();
+      section.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+    },
+    render,
+    reset() {
+      nextHeart = 1;
+      phraseIndex = 0;
+      giftLayer = 0;
+      document.getElementById('birthday-audio').pause();
+      document.getElementById('birthday-audio').currentTime = 0;
+      document.getElementById('cuteness-video').pause();
+      document.getElementById('cuteness-video').currentTime = 0;
+      document.getElementById('compilation-soundtrack').pause();
+      document.getElementById('compilation-soundtrack').currentTime = 0;
+      document.getElementById('letter-message').hidden = true;
+      document.getElementById('birthday-letter').classList.remove('opened');
+      document.getElementById('birthday-letter').setAttribute('aria-expanded', 'false');
+      document.getElementById('wrong-choice').hidden = true;
+      document.querySelectorAll('[data-mystery-box]').forEach(box => { box.disabled = false; box.classList.remove('chosen'); });
+      render();
+    }
+  };
+}

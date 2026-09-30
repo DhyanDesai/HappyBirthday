@@ -12,6 +12,8 @@ body{background-color:var(--bg);background-image:radial-gradient(#e9c7d3 1px,tra
 .site-footer{border-top:2px dashed #e1c7cf;color:#7b687e}
 .site-footer .text-button,.text-button{color:#77536f;text-decoration-color:#c685a7}
 .site-footer .text-button:hover,.text-button:hover{color:#b04473}
+#reset-progress{position:fixed;z-index:70;left:18px;bottom:max(18px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:7px;padding:10px 14px;border:2px solid #78526c;border-radius:99px;background:#fff8ec;color:#704b65;font-size:.66rem;font-weight:900;letter-spacing:.06em;text-decoration:none;box-shadow:4px 5px 0 rgba(112,70,95,.32);transition:transform .18s,background .18s,box-shadow .18s}#reset-progress:before{content:'↻';font-size:1rem;line-height:1}#reset-progress:hover{color:#8f3d65;background:#ffe5ef;transform:translateY(-2px);box-shadow:5px 7px 0 rgba(112,70,95,.32)}#reset-progress:focus-visible{outline:3px solid #e67fa8;outline-offset:3px}
+@media(max-width:480px){#reset-progress{left:12px;bottom:max(12px,env(safe-area-inset-bottom));padding:9px 12px;font-size:.58rem}}
 .eyebrow,.tiny-label,.chapter-number,.clue-label,.quiz-progress{font-family:'Nunito','Trebuchet MS',sans-serif;color:#98517e;font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:lowercase}
 .eyebrow{display:table;background:#ffe4ed;padding:8px 14px;border:1px solid #f4afc7;border-radius:99px;transform:rotate(-2deg);margin-bottom:30px}
 .live-dot{background:#e96f98;box-shadow:0 0 0 4px rgba(233,111,152,.13)}
