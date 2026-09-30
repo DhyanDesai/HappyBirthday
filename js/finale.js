@@ -113,6 +113,15 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     }
   }
 
+  function renderCompilation() {
+    const state = getState();
+    const surprise = document.getElementById('compilation-surprise');
+    const videoWrap = document.getElementById('compilation-video');
+    surprise.hidden = !state.compilationUnlocked;
+    videoWrap.hidden = !state.compilationOpened;
+    document.getElementById('reveal-compilation').hidden = state.compilationOpened;
+  }
+
   function render() {
     const state = getState();
     section.hidden = !state.finaleUnlocked;
@@ -122,7 +131,10 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
     if (step === 'game-one') renderHearts();
     if (step === 'game-two') renderPhrase();
     if (step === 'gift') renderGift();
-    if (step === 'letter') launchConfetti();
+    if (step === 'letter') {
+      launchConfetti();
+      renderCompilation();
+    }
   }
 
   document.querySelectorAll('[data-mystery-box]').forEach(button => button.addEventListener('click', () => {
@@ -178,10 +190,24 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
   });
   birthdayAudio.addEventListener('ended', () => {
     audioToggle.innerHTML = '<span aria-hidden="true">↻</span><strong>Play the message again</strong>';
-    audioStatus.textContent = 'Happy Birthday, Sweetu ♡';
+    audioStatus.textContent = 'Happy Birthday, Sweetu ♡ But wait...';
+    const state = getState();
+    state.compilationUnlocked = true;
+    saveState(state);
+    renderCompilation();
+    window.setTimeout(() => document.getElementById('compilation-surprise').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'start' }), prefersReducedMotion.matches ? 0 : 500);
   });
   birthdayAudio.addEventListener('error', () => {
     audioStatus.textContent = 'The recording could not load. Refresh once and try again.';
+  });
+  document.getElementById('reveal-compilation').addEventListener('click', () => {
+    const state = getState();
+    state.compilationOpened = true;
+    saveState(state);
+    renderCompilation();
+    const video = document.getElementById('cuteness-video');
+    video.play().catch(() => { /* Visible controls remain available on restrictive browsers. */ });
+    document.getElementById('compilation-video').scrollIntoView({ behavior: prefersReducedMotion.matches ? 'instant' : 'smooth', block: 'center' });
   });
 
   return {
@@ -200,6 +226,8 @@ export function createFinale({ getState, saveState, prefersReducedMotion }) {
       giftLayer = 0;
       document.getElementById('birthday-audio').pause();
       document.getElementById('birthday-audio').currentTime = 0;
+      document.getElementById('cuteness-video').pause();
+      document.getElementById('cuteness-video').currentTime = 0;
       document.getElementById('letter-message').hidden = true;
       document.getElementById('birthday-letter').classList.remove('opened');
       document.getElementById('birthday-letter').setAttribute('aria-expanded', 'false');
